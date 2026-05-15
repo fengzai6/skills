@@ -7,7 +7,7 @@
 ```
 skills/
 ├── _template/                  # Skill 模板（新建 skill 时复制此目录）
-│   ├── SKILL.md                # 【必需】核心文件：YAML 元数据 + 指令
+│   ├── SKILL.template.md       # 【必需】核心文件模板（复制后重命名为 SKILL.md）
 │   ├── README.md               # 【强烈推荐】给人类看的说明
 │   ├── examples.md             # Few-shot 示例（输入/输出对）
 │   ├── scripts/                # 可执行脚本（Python、Bash、JS 等）
@@ -21,15 +21,15 @@ skills/
 ## 如何新建 Skill
 
 1. 复制 `_template/` 目录并重命名为你的 skill 名称（kebab-case）
-2. 编辑 `SKILL.md`，填写 YAML 元数据和工作流指令
+2. 将 `SKILL.template.md` 重命名为 `SKILL.md`，填写 YAML 元数据和工作流指令
 3. 编写 `README.md` 描述 skill 的用途和使用方式
 4. 按需添加 `examples.md`、`scripts/`、`references/`、`assets/`、`tests/`
 
 ## Skill 核心文件说明
 
-### SKILL.md（必需）
+### SKILL.md（必需，模板中为 SKILL.template.md）
 
-Skill 的核心定义文件，包含 YAML frontmatter 元数据和 markdown 工作流指令。
+Skill 的核心定义文件，包含 YAML frontmatter 元数据和 markdown 工作流指令。复制模板后需重命名为 `SKILL.md`。
 
 frontmatter 字段：
 

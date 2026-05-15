@@ -3,7 +3,7 @@
 ## 结构约定
 
 - 每个 skill 一个独立目录，使用 kebab-case 命名
-- 每个 skill 目录必须包含 `SKILL.md`（核心指令文件）
+- 每个 skill 目录必须包含 `SKILL.md`（核心指令文件，模板中为 `SKILL.template.md` 以避免被识别）
 - 其余文件按需创建，根据 skill 复杂程度决定：
   - `README.md` — 当 skill 逻辑复杂、需要给人类额外说明时才创建
   - `examples.md` — 当需要 few-shot 示例辅助模型理解时才创建
