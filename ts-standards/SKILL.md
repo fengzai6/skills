@@ -48,6 +48,11 @@ metadata:
 
 - **原子样式**: 项目如果配置了原子样式（tailwind、nativewind），优先使用原子样式实现。
 - **类名**: 若项目采用原子样式，组件需按逻辑动态拼接类名时，尽量避免使用模板字符串，统一使用 `cn` 工具函数处理，确保样式合并可预测且避免冲突。
+- **Ant Design 语义化样式覆盖**:
+  - 当项目使用 Tailwind CSS，且需要对 antd 组件做语义化样式覆盖时，优先使用 `classNames`。
+  - 只有在 `classNames` 无法满足需求时，才使用 `styles`。
+- **Tailwind CSS Important 规则**:
+  - 使用 Tailwind CSS 时，important 标记应放在类名尾部，如 `bg-red-500!`，而非头部。
 
 ---
 
@@ -81,5 +86,5 @@ metadata:
   - **检测方式**: 检查项目根目录是否存在对应的包管理器配置文件，以及其中是否包含 Minimum Release Age 相关配置。
   - **各包管理器建议配置**:
     - **npm**: 在 `.npmrc` 文件中添加 `minimum-release-age=1`。
-    - **yarn**: 在 `.yarnrc.yml` 中添加 `minimumReleaseAge: 1`。
+    - **yarn**: 在 `.yarnrc.yml` 中添加 `npmMinimalAgeGate: 1440`。
     - **pnpm**: 要求 pnpm >= 11（默认启用 1 天的 Minimum Release Age，无需额外配置）。
