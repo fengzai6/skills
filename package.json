@@ -1,0 +1,11 @@
+{
+  "name": "skills",
+  "packageManager": "yarn@4.11.0",
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "tiktoken": "^1.0.22"
+  },
+  "scripts": {
+    "prepare": "husky"
+  }
+}

@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# 统计 token 数并更新 README.md
+node scripts/count-tokens.mjs
+
+# 将更新后的 README.md 添加到暂存区
+git add README.md

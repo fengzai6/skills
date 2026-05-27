@@ -6,23 +6,18 @@
 
 ### 可用 Rules
 
-- [rules/main.md](rules/main.md)
-- [rules/codegraph.md](rules/codegraph.md)
+- `main`
+  - 路径: [rules/main.md](rules/main.md) (1842 tokens)
+  - 用途: 默认通用规则，正常使用时复制这个文件内容即可
+- `codegraph`
+  - 路径: [rules/codegraph.md](rules/codegraph.md) (438 tokens)
+  - 用途: CodeGraph 相关补充规则，只有在用户明确需要 CodeGraph 约束时才和 `main` 一起复制
 
 ### 可用 Skills
 
 - `ts-standards`
-  - 路径: [ts-standards/SKILL.md](ts-standards/SKILL.md)
+  - 路径: [skills/ts-standards/SKILL.md](skills/ts-standards/SKILL.md) (1368 tokens)
   - 用途: TypeScript、React、Next.js、Vue + TS 前端项目编码规范
-
-## Rules 说明
-
-- `rules/main.md`
-  - 默认通用规则。
-  - 正常使用时复制这个文件内容即可。
-- `rules/codegraph.md`
-  - CodeGraph 相关补充规则。
-  - 只有在用户明确需要 CodeGraph 约束时，才和 `rules/main.md` 一起复制。
 
 ## 目录结构
 
@@ -35,8 +30,9 @@ skills/
 ├── rules/                      # 通用规则与可选补充规则
 │   ├── main.md                 # 默认通用规则
 │   └── codegraph.md            # CodeGraph 可选规则
-├── ts-standards/               # TypeScript / React 相关 skill
-│   └── SKILL.md
+├── skills/                     # Skills 目录
+│   └── ts-standards/           # TypeScript / React 相关 skill
+│       └── SKILL.md
 ├── CLAUDE.md                   # 本仓库编写规范
 └── README.md                   # 本文件
 ```
