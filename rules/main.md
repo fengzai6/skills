@@ -63,6 +63,8 @@
 
 - `/ts-standards`
   - 调用时机: 当项目使用 TypeScript、React、Next.js、Vue + TS 等前端技术栈时调用
+- `/task-planner`
+  - 调用时机: 当用户明确要求编写计划文档，或任务复杂到需要拆分多个步骤时调用
 
 ## 3. 安全规则（最高优先级，不可覆盖）
 
