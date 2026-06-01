@@ -1,6 +1,5 @@
 # 通用开发规范 (Shared Development Standards)
 
-> 全局行为约束与通用编码规范，所有项目通用，应放置在 `~/.claude/CLAUDE.md` 中始终生效。
 > 技术栈专项规范（如 TypeScript/React、C# 等）通过对应 skill 按需加载。
 
 ## 0. 核心原则 (Core Principles)
@@ -89,4 +88,4 @@
 
 - `CodeGraph`
   - 路径: [rules/codegraph.md](./codegraph.md)
-  - 说明: CodeGraph 为这些代理提供了一个预先索引的知识图谱 --符号关系、调用图谱和代码结构。代理可即时查询该图，而无需扫描文件。
+  - 说明: CodeGraph 为这些代理提供了一个预先索引的知识图谱 --符号关系、调用图谱和代码结构。代理可即时查询该图，而无需扫描文件 （从 0.9.7 开始不用额外描述了）。

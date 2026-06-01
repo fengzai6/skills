@@ -7,8 +7,8 @@
 ### 可用 Rules
 
 - `main`
-  - 路径: [rules/main.md](rules/main.md) (1842 tokens)
-  - 用途: 默认通用规则，正常使用时复制这个文件内容即可
+  - 路径: [rules/main.md](rules/main.md) (1815 tokens)
+  - 用途: 默认通用规则，全局行为约束与通用编码规范，所有项目通用，应放置在 `~/.claude/CLAUDE.md` 中始终生效，正常使用时复制这个文件内容即可
 - `codegraph`
   - 路径: [rules/codegraph.md](rules/codegraph.md) (438 tokens)
   - 用途: CodeGraph 相关补充规则，只有在用户明确需要 CodeGraph 约束时才和 `main` 一起复制
