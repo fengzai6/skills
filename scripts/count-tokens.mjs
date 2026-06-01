@@ -1,5 +1,5 @@
-import { readFileSync, writeFileSync } from 'fs';
-import { globSync } from 'fs';
+import { readFileSync, writeFileSync, readdirSync, statSync } from 'fs';
+import { join } from 'path';
 import tiktoken from 'tiktoken';
 
 // 使用 cl100k_base 编码（GPT-3.4/4 使用的编码器）
@@ -43,7 +43,10 @@ function main() {
   let totalTokens = 0;
 
   // 统计 rules 目录下的 .md 文件
-  const rulesFiles = ['rules/main.md', 'rules/codegraph.md'];
+  const rulesDir = 'rules';
+  const rulesFiles = readdirSync(rulesDir)
+    .filter(f => f.endsWith('.md'))
+    .map(f => join(rulesDir, f));
   for (const file of rulesFiles) {
     const tokens = countFileTokens(file);
     tokenCounts.push({ path: file, tokens });
@@ -51,9 +54,14 @@ function main() {
     console.log(`  ${file}: ${tokens} tokens`);
   }
 
-  // 统计 skills 目录下的 SKILL.md 文件
+  // 统计 skills 目录下的 SKILL.md 文件（动态发现）
   const skillsDir = 'skills';
-  const skillFiles = ['skills/ts-standards/SKILL.md']; // 可以动态扩展
+  const skillFiles = readdirSync(skillsDir)
+    .filter(f => statSync(join(skillsDir, f)).isDirectory())
+    .map(f => join(skillsDir, f, 'SKILL.md'))
+    .filter(f => {
+      try { statSync(f); return true; } catch { return false; }
+    });
   for (const file of skillFiles) {
     const tokens = countFileTokens(file);
     tokenCounts.push({ path: file, tokens });
