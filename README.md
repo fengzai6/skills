@@ -7,7 +7,7 @@
 ### 可用 Rules
 
 - `main`
-  - 路径: [rules/main.md](rules/main.md) (1865 tokens)
+  - 路径: [rules/main.md](rules/main.md) (1978 tokens)
   - 用途: 默认通用规则，全局行为约束与通用编码规范，所有项目通用，应放置在 `~/.claude/CLAUDE.md` 中始终生效，正常使用时复制这个文件内容即可
 - `codegraph`
   - 路径: [rules/codegraph.md](rules/codegraph.md) (438 tokens)
@@ -19,7 +19,7 @@
   - 路径: [skills/ts-standards/SKILL.md](skills/ts-standards/SKILL.md) (1368 tokens)
   - 用途: TypeScript、React、Next.js、Vue + TS 前端项目编码规范
 - `task-planner`
-  - 路径: [skills/task-planner/SKILL.md](skills/task-planner/SKILL.md) (2261 tokens)
+  - 路径: [skills/task-planner/SKILL.md](skills/task-planner/SKILL.md) (2686 tokens)
   - 用途: 将复杂任务文档化为可追踪的计划，支持子任务编排、状态管理和跨会话上下文传递
 
 ## 目录结构
