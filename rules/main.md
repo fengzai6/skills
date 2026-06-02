@@ -36,6 +36,7 @@
 
 - **文件目录**: kebab-case (如 `react-button`)
 - **常量**: UPPER_CASE
+- **通用化产物命名**: 当产物是偏向通用化的工具或组件时，命名应贴近产物本身的功能或用途，而非使用场景（如 `useWindowSize` 而非 `useResponsiveLayout`）
 
 ### 1.2 文件与复用规范
 

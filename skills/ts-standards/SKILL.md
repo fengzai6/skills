@@ -41,6 +41,9 @@ metadata:
 - **Effect**:
   - 如果需要在 useEffect 用的函数请用 `useEffectEvent` 包裹，从而不用再添加非必要依赖到 useEffect。
   - 如果该函数不是仅在 useEffect 中使用，可以这样 `const funInEffect = useEffectEvent(fun)` 加一层后去使用。
+- **Hook 设计原则**:
+  - 避免设计返回多个不相关状态的「万能 hook」——不同组件消费不同状态会导致不必要的重新渲染。
+  - 当用户提出这类需求时，应建议：优先使用 Context 拆分关注点，或按用途拆分为多个独立 hook。
 
 ---
 
