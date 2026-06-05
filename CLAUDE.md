@@ -59,7 +59,7 @@
 ```
 ---
 name: skill-name
-description: Brief description of capability. Use when [specific triggers].
+description: Use when [specific triggering conditions].
 ---
 
 # Skill Name
@@ -79,23 +79,22 @@ description: Brief description of capability. Use when [specific triggers].
 
 ## 说明要求（description）
 
-description 是代理决定加载哪个技能时看到的**唯一内容**，与所有已安装技能一起出现在系统提示中。
+description 是代理决定是否读取某个 skill 时看到的关键信息。它必须回答“什么时候应该读取这个 skill”。
 
-**目标**：让代理知道：
-- 该技能提供什么能力
-- 何时/为何触发（特定关键字、上下文、文件类型）
+**目标**：只描述触发条件，不概括执行流程。
 
 **格式要求**：
-- 最多 1024 字符
-- 以第三人称撰写
-- 第一句：说明功能
-- 第二句："在 [特定触发因素] 时使用"
+- 必须以 `Use when...` 开头
+- 聚焦具体场景、症状、文件、技术栈或任务类型
+- 不要概括 skill 的执行流程、产出物或内部步骤，避免 agent 只按摘要执行而跳过正文
+- 技术栈专项 skill 应在触发条件中明确技术栈；非技术栈专项 skill 不要绑定无关技术细节
+- 尽量保持简短，优先控制在 500 字符以内
 
 **好例子**：
-> 从 PDF 文件中提取文本和表格、填写表单、合并文档。在处理 PDF 文件或用户提及 PDF、表单、文档提取时使用。
+> Use when working with PDF files, form filling, document extraction, text extraction, table extraction, or document merging.
 
 **坏例子**：
-> 帮助处理文档。
+> Extracts text and tables from PDFs, fills forms, and merges documents.
 
 ## 何时添加脚本
 
@@ -116,7 +115,7 @@ description 是代理决定加载哪个技能时看到的**唯一内容**，与�
 ## 审查清单
 
 起草后逐项验证：
-- [ ] description 包含触发条件（"在……时使用"）
+- [ ] description 以 `Use when...` 开头，且只描述触发条件
 - [ ] `SKILL.md` 不超过 100 行
 - [ ] 无时效性信息
 - [ ] 术语一致

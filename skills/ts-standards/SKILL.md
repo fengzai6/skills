@@ -1,6 +1,6 @@
 ---
 name: ts-standards
-description: TypeScript/React 前端项目编码规范。当检测到项目使用 TypeScript、React、Next.js、Vue + TS 等前端技术栈时（如存在 tsconfig.json、.tsx/.ts 文件、package.json 中含 react/next/vue 依赖），应自动调用此 skill 加载编码规范。
+description: Use when the task involves TypeScript frontend code, React, Next.js, Vue + TS, TSX/TS files, tsconfig.json, package.json frontend dependencies, components, hooks, routing, state management, styling, or TypeScript types.
 user-invocable: true
 metadata:
   author: fengzai6
