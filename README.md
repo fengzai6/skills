@@ -7,7 +7,7 @@
 ### 可用 Rules
 
 - `main`
-  - 路径: [rules/main.md](rules/main.md) (2754 tokens)
+  - 路径: [rules/main.md](rules/main.md) (2883 tokens)
   - 用途: 默认通用规则，全局行为约束与通用编码规范，所有项目通用，应放置在 `~/.claude/CLAUDE.md` 中始终生效，正常使用时复制这个文件内容即可
 - `codegraph`
   - 路径: [rules/codegraph.md](rules/codegraph.md) (438 tokens)
@@ -21,6 +21,9 @@
 - `task-planner`
   - 路径: [skills/task-planner/SKILL.md](skills/task-planner/SKILL.md) (3614 tokens)
   - 用途: 将复杂任务文档化为可追踪的计划，支持子任务编排、状态管理和跨会话上下文传递
+- `spec-review`
+  - 路径: [skills/spec-review/SKILL.md](skills/spec-review/SKILL.md) (764 tokens)
+  - 用途: 审查 spec、设计文档或技术方案文档，给出修改建议、设计改进意见和补充建议
 
 ## 目录结构
 
@@ -36,7 +39,9 @@ skills/
 ├── skills/                     # Skills 目录
 │   ├── ts-standards/           # TypeScript / React 相关 skill
 │   │   └── SKILL.md
-│   └── task-planner/           # 任务规划与文档化 skill
+│   ├── task-planner/           # 任务规划与文档化 skill
+│   │   └── SKILL.md
+│   └── spec-review/            # Spec 文档审查 skill
 │       └── SKILL.md
 ├── CLAUDE.md                   # 本仓库编写规范
 └── README.md                   # 本文件
