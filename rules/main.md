@@ -80,27 +80,39 @@
 
 ## 2. Skill
 
-### 2.1 主动调用规则
+### 2.1 主动调用规则（强制执行，最高优先级）
 
-收到任何任务时，**在开始动手之前**，必须先检查下方「额外可用 Skills」及系统提供的 skill 列表，判断是否有匹配的 skill。匹配时必须先调用对应 skill，再按其流程执行，不得跳过直接自行处理。
+**收到任何任务后，你的第一个动作必须是检查 skill 列表。** 即使只有 1% 的可能性匹配，也必须调用对应 skill。这不是可选的。
 
-典型场景：
+#### 调用流程（严格按顺序）
 
-- 涉及 TypeScript / React / Next.js / Vue + TS 前端开发 → 先调 `/ts-standards`
-- 需要规划、拆分任务、编写计划文档 → 先调 `/task-planner`
-- 涉及代码审查 / 调试 / 测试 / 实现功能 / 代码变更 → 检查系统 skill 列表中是否有匹配项（如 `code-review`、`systematic-debugging`、`test-driven-development`、`brainstorming` 等）
-- 需要审查 spec、设计文档或技术方案 → 先调 `/spec-review`
+1. **首先**，检查下方「额外可用 Skills」及系统 skill 列表，判断是否有匹配项
+2. **其次**，匹配标准：不看用户是否显式要求，而是看任务本质是否匹配 skill 的触发条件
+3. **然后**，调用所有匹配的 skill（先流程类 skill，再实现类 skill）
+4. **最后**，按 skill 流程执行任务
 
-**判断标准**：不看用户是否显式要求，而是看任务本质是否匹配 skill 的触发条件。
+#### 匹配标准
 
-### 2.2 额外可用 Skills
+以下任一条件满足，即视为匹配，**必须**调用对应 skill：
 
-- `/ts-standards`
-  - 调用时机: 当项目使用 TypeScript、React、Next.js、Vue + TS 等前端技术栈时调用
-- `/task-planner`
-  - 调用时机: 当用户明确要求编写计划文档，或任务复杂到需要拆分多个步骤时调用
-- `/spec-review`
-  - 调用时机: 当用户要求审查 spec、设计文档或技术方案文档时调用
+- 涉及 TypeScript / TSX / TS 文件、`tsconfig.json`、`package.json` 前端依赖 → `/ts-standards`
+- 涉及 React / Next.js / Vue + TS 组件、hooks、路由、状态管理、样式 → `/ts-standards`
+- 需要规划、拆分任务、编写计划文档 → `/task-planner`
+- 涉及代码审查 / 调试 / 测试 / 实现功能 / 代码变更 → 检查系统 skill 列表（如 `code-review`、`systematic-debugging`、`test-driven-development`、`brainstorming`）
+- 需要审查 spec、设计文档或技术方案 → `/spec-review`
+
+#### 常见自我合理化陷阱（出现以下想法时，立即停止并调用 skill）
+
+| 你可能会想 | 事实 |
+|-----------|------|
+| "这只是一个简单的问题" | 问题 = 任务。检查 skill。 |
+| "这只是问答/分析，不是编码任务" | 只要涉及该技术栈，无论任务类型（编码、分析、问答、重构），都必须调用。 |
+| "我先看看代码再说" | skill 告诉你如何看代码。先检查。 |
+| "我先收集信息" | skill 告诉你如何收集信息。先检查。 |
+| "我记得这个 skill 内容" | skill 会演进。读取当前版本。 |
+| "这个不算正式任务" | 行动 = 任务。检查 skill。 |
+| "调 skill 太小题大做了" | 简单的事会变复杂。调用它。 |
+| "这个场景不在典型列表里" | 列表只是举例。本质匹配即调用。 |
 
 ## 3. 工具使用规范
 
