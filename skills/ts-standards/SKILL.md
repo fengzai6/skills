@@ -67,10 +67,19 @@ function App() {
 ### 3.4 Hooks 编写规范
 
 - **文件命名**: `use-xxx.ts`（kebab-case），放在 `hooks/` 目录。
-- **纯函数工具**: 纯函数工具逻辑放在 Hook 文件顶部（如 `deriveConversationId`），不放在 Hook 内部。
+- **纯函数工具**: 纯函数工具逻辑放在 Hook 文件顶部，不放在 Hook 内部。
 - **复杂 Hook 注释**: 复杂 Hook 需有 JSDoc 注释说明用途。
 
-### 3.5 其他
+### 3.5 服务层请求 Hook 规范
+
+当接口需要**缓存和多组件共用**时，在 `services/hooks/` 目录下新增 `use-xxx-request.ts`，根据项目实际使用的请求库选择实现方式：
+
+- **ahooks**: 使用 `useRequest` 封装（需项目已安装 `ahooks`）
+- **TanStack Query**: 使用 `useQuery` / `useMutation` 封装（需项目已安装 `@tanstack/react-query`）
+
+判定标准：单组件内一次性请求、无需缓存的接口，直接在组件内调用即可，不需要抽 Hook。
+
+### 3.6 其他
 
 - **性能优化**: 如果项目使用了 react-compiler，无需使用 `memo`、`useCallback` 包裹函数，编译器会自动处理。
 - **代码结构**: React 组件代码必须遵循严格的顺序：state（状态定义） => function（函数定义） => useEffect（副作用处理）
@@ -111,6 +120,7 @@ src/
 ├── router/              # 路由配置（createBrowserRouter）
 ├── services/            # 服务层
 │   ├── api/
+│   ├── hooks/           # 请求 Hook（use-xxx-request），缓存和共用接口封装
 │   └── types/           # 服务层类型定义
 ├── stores/              # 状态管理
 ├── types/               # 应用层类型定义
@@ -132,6 +142,13 @@ src/
 - **接口与类型别名**: 适当地使用 Interface（接口）和 Type Aliases（类型别名）。
 - **清晰的定义**: 编写清晰且易读的类型定义。
 - **常量对象替代枚举**: 使用带有 `as const` 的常量对象来替代 enum。
+  ```ts
+  export const ROLE = {
+    USER: "user",
+    SYSTEM: "system",
+  } as const;
+  export type Role = (typeof ROLE)[keyof typeof ROLE];
+  ```
 
 ---
 
