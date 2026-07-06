@@ -1,0 +1,25 @@
+{
+  "env": {
+    "ANTHROPIC_AUTH_TOKEN": "sk-",
+    "ANTHROPIC_BASE_URL": "http://localhost:4000/",
+    "ANTHROPIC_DEFAULT_FABLE_MODEL": "claude-opus[1M]",
+    "ANTHROPIC_DEFAULT_FABLE_MODEL_NAME": "claude-opus",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-sonnet",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL_NAME": "claude-sonnet",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus[1M]",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL_NAME": "claude-opus",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-sonnet[1M]",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL_NAME": "claude-sonnet",
+    "CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS": "1",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1"
+  },
+  "includeCoAuthoredBy": false,
+  "permissions": {
+    "allow": [
+      "mcp__codegraph__*",
+      "mcp__framelink_figma_mcp__*",
+      "mcp__smart-search-toolset__*"
+    ],
+    "deny": ["WebSearch", "WebFetch"]
+  }
+}

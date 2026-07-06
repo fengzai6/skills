@@ -1,0 +1,35 @@
+{
+  "codegraph": {
+    "type": "stdio",
+    "command": "codegraph",
+    "args": ["serve", "--mcp"]
+  },
+  "smart-search-toolset": {
+    "type": "stdio",
+    "command": "uvx",
+    "args": [
+      "mcpstore-cli",
+      "run",
+      "--url",
+      "https://mcpmarket.cn/mcp/419c19bc1f1fc853ccd4a3da"
+    ],
+    "env": {}
+  },
+  "framelink_figma_mcp": {
+    "args": ["-y", "figma-developer-mcp", "--figma-api-key=", "--stdio"],
+    "command": "npx",
+    "env": {
+      "FIGMA_API_KEY": ""
+    },
+    "type": "stdio"
+  },
+  "playwright": {
+    "command": "npx",
+    "args": ["@playwright/mcp@latest"]
+  },
+  "fetch": {
+    "type": "stdio",
+    "command": "uvx",
+    "args": ["mcp-server-fetch"]
+  }
+}
