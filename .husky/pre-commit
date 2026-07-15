@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# VS Code 等 GUI 调 git 时不加载 shell 配置，需手动补上 nvm 的 node
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
 # 统计 token 数并更新 README.md
 node scripts/count-tokens.mjs
 
