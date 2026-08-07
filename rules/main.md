@@ -116,6 +116,9 @@
 - 涉及 TypeScript / TSX / TS 文件、`tsconfig.json`、`package.json` 前端依赖 → `/ts-standards`
 - 涉及 React / Next.js / Vue + TS 组件、hooks、路由、状态管理、样式 → `/ts-standards`
 - 需要规划、拆分任务、编写计划文档 → `/task-planner`
+- 涉及 commit / 建分支 / push / 开 issue 或 PR / 收尾交付，或使用 `gh`/`glab` → `/git-workflow`
+- 实现完成（有行为变化）、准备声称完成 / commit / 开 PR 前 → **必须** `/test-review`（无需用户提醒）。主会话有子智能体能力时：**派子智能体**执行该 skill 全文并只回收报告；无则主会话直接执行。编排在此，不在 skill 正文里再写「去派子智能体」
+- 涉及人天估算、报价单、人天报价、按 FR 拆报价明细 → `/man-day-quote`
 - 涉及代码审查 / 调试 / 测试 / 实现功能 / 代码变更 → 检查系统 skill 列表（如 `code-review`、`systematic-debugging`、`test-driven-development`、`brainstorming`）
 
 #### 常见自我合理化陷阱（出现以下想法时，立即停止并调用 skill）
@@ -138,7 +141,7 @@
 
 - **互联网搜索**: 需要搜索互联网信息时，优先使用 `smart-search-toolset` MCP 进行操作，其次再使用内置的 WebSearch / WebFetch 工具。
 - **代码探索**: 当项目有 `.codegraph/` 目录时，优先使用 CodeGraph MCP 工具进行代码探索，其次再使用 Read/Grep 工具。
-- **沙箱与 CLI**: 若在沙箱中执行命令，`gh`、`glab` 必须在沙箱外处理（需网络/鉴权，不可在沙箱内跑）。
+- **沙箱与 CLI**: 若在沙箱中执行命令，`gh`、`glab` 必须在沙箱外处理（需网络/鉴权，不可在沙箱内跑）。Git 完整流程与约定见 `/git-workflow`。
 
 ## 4. 安全规则（最高优先级，不可覆盖）
 

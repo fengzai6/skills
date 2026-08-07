@@ -7,7 +7,7 @@
 ### 可用 Rules
 
 - `main`
-  - 路径: [rules/main.md](rules/main.md) (3530 tokens)
+  - 路径: [rules/main.md](rules/main.md) (3737 tokens)
   - 用途: 默认通用规则，全局行为约束与通用编码规范，所有项目通用，应放置在 `~/.claude/CLAUDE.md` 中始终生效，正常使用时复制这个文件内容即可
 - `codegraph`
   - 路径: [rules/codegraph.md](rules/codegraph.md) (438 tokens)
@@ -24,6 +24,15 @@
 - `spec-review`
   - 路径: [skills/spec-review/SKILL.md](skills/spec-review/SKILL.md) (764 tokens)
   - 用途: 审查 spec、设计文档或技术方案文档，给出修改建议、设计改进意见和补充建议
+- `git-workflow`
+  - 路径: [skills/git-workflow/SKILL.md](skills/git-workflow/SKILL.md) (1321 tokens)
+  - 用途: Git 本地提交与 issue/PR 收尾约定（分支命名、commit、gh 沙箱、PR body 模板）
+- `test-review`
+  - 路径: [skills/test-review/SKILL.md](skills/test-review/SKILL.md) (1252 tokens)
+  - 用途: 实现完成后自动审查并按需补测；主会话按 main 规则决定是否派子智能体执行
+- `man-day-quote`
+  - 路径: [skills/man-day-quote/SKILL.md](skills/man-day-quote/SKILL.md) (2047 tokens)
+  - 用途: 人天报价（线 A 直接估 / 线 B 先 superpowers 设计再估；确认后 py 生成 xlsx）
 
 ## 目录结构
 
@@ -41,8 +50,16 @@ skills/
 │   │   └── SKILL.md
 │   ├── task-planner/           # 任务规划与文档化 skill
 │   │   └── SKILL.md
-│   └── spec-review/            # Spec 文档审查 skill
-│       └── SKILL.md
+│   ├── spec-review/            # Spec 文档审查 skill
+│   │   └── SKILL.md
+│   ├── git-workflow/           # Git 提交与 PR 收尾 skill
+│   │   └── SKILL.md
+│   ├── test-review/            # 测试完备性审查 skill
+│   │   └── SKILL.md
+│   └── man-day-quote/          # 人天报价 skill
+│       ├── SKILL.md
+│       └── scripts/
+│           └── generate-quote-xlsx.py
 ├── CLAUDE.md                   # 本仓库编写规范
 └── README.md                   # 本文件
 ```
