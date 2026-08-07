@@ -55,6 +55,10 @@ metadata:
    - assignee：`gh api user -q .login`（失败则省略并告知）  
    - **非** draft；不默认 label / reviewer
 4. 输出 issue / PR 链接
+5. **可选 PR review**
+   - PR 创建完成并输出链接后，询问用户是否需要派子智能体 review 该 PR
+   - 用户同意 → 派子智能体基于 PR diff / 链接做 review，并回收报告
+   - 用户拒绝或未要求 → 不派，不阻塞收尾
 
 **逃逸**：
 
@@ -119,4 +123,5 @@ EOF
 - 主分支上未询问就直接 commit（应先问；用户拒绝建分支后可 commit）
 - 在沙箱内跑 `gh` / `glab`
 - PR 无 Test plan 节或 Test plan 空白
+- PR 创建后未经用户同意就自动派子智能体 review
 - 把「开发完成」自行升级成收尾
