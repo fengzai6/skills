@@ -111,11 +111,12 @@
 
 #### 匹配标准
 
-以下任一条件满足，即视为匹配，**必须**调用对应 skill：
+以下任一条件满足，即视为匹配，按下列规则处理：
 
 - 涉及 TypeScript / TSX / TS 文件、`tsconfig.json`、`package.json` 前端依赖 → `/ts-standards`
 - 涉及 React / Next.js / Vue + TS 组件、hooks、路由、状态管理、样式 → `/ts-standards`
-- 需要规划、拆分任务、编写计划文档 → `/task-planner`
+- 用户主动要求编写计划文档 / 任务文档 / `.tasks` 文档 → `/task-planner`
+- 需求需要澄清、方案设计、拆分实现路径或存在多方案取舍 → 优先使用系统 superpowers（如 `brainstorming` / `writing-plans`）；但沟通后确认需求足够简单、风险低、当前会话可完成时，不强制落地 spec / plans，可使用会话内 TODO / checklist 跟踪
 - 涉及 commit / 建分支 / push / 开 issue 或 PR / 收尾交付，或使用 `gh`/`glab` → `/git-workflow`
 - 实现完成（有行为变化）、准备声称完成 / commit / 开 PR 前 → **必须** `/test-review`（无需用户提醒）。主会话有子智能体能力时：**派子智能体**执行该 skill 全文并只回收报告；无则主会话直接执行。编排在此，不在 skill 正文里再写「去派子智能体」
 - 涉及人天估算、报价单、人天报价、按 FR 拆报价明细 → `/man-day-quote`
