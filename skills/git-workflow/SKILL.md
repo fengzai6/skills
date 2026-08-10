@@ -48,7 +48,7 @@ metadata:
    - body：**空**  
    - 用户说不要 issue → 跳过  
    - 用户给已有 `#N` → 不新建，PR 关联该号
-3. **PR**  
+3. **PR**（**必须等 issue 创建成功并拿到 `#N` 后再创建**；禁止与 issue 并发，避免编号冲突）  
    - 标题：英文（有 issue 则与 issue 标题一致）  
    - body：中文，用下方模板  
    - 有 issue → 含 `Closes #N`  
@@ -72,22 +72,23 @@ metadata:
 ## PR body 模板
 
 ```markdown
-## 关联
+## Related
 Closes #<n>
 
-## 总结
-<!-- 2–5 句中文：做了什么、为什么 -->
+## Summary
+<!-- 中文：做了什么、为什么；篇幅随 PR 规模调整，大 PR 可写多段 -->
 
-## 已完成
+## Done
 - [x] ...
 
 ## Test plan
 - [ ] ...
 ```
 
-- 无 issue：删除「关联」整节，或按用户改为 `Refs #n`
+- 无 issue：删除 `Related` 整节，或按用户改为 `Refs #n`
+- Summary 按改动规模写清，不人为压短
 - Test plan 无步骤时写：`N/A - <原因>`，禁止空节
-- 标题英文，body 中文
+- 标题英文，body 中文；**模板标题固定英文**
 
 ## 命令备忘
 
@@ -95,18 +96,18 @@ Closes #<n>
 # 当前用户（assignee）
 gh api user -q .login
 
-# Issue（空 body）
+# Issue（空 body）— 先创建并拿到 #N
 gh issue create --title "English title" --body ""
 
-# PR（非 draft；有 issue 时 body 含 Closes #N）
+# PR（非 draft；等 issue 成功后再建；body 含 Closes #N）
 gh pr create --title "English title" --body "$(cat <<'EOF'
-## 关联
+## Related
 Closes #N
 
-## 总结
+## Summary
 ...
 
-## 已完成
+## Done
 - [x] ...
 
 ## Test plan
@@ -115,13 +116,14 @@ EOF
 )" --assignee "$(gh api user -q .login)"
 ```
 
-`gh` / `glab` / `git push`：沙箱外执行。
+`gh` / `glab` / `git push`：沙箱外执行。Issue 与 PR **串行**创建，禁止并发。
 
 ## 红线
 
 - 未到阶段 2 就 push / 建 issue / 建 PR
 - 主分支上未询问就直接 commit（应先问；用户拒绝建分支后可 commit）
 - 在沙箱内跑 `gh` / `glab`
+- **Issue 与 PR 并发创建**（必须先 issue 成功拿到 `#N`，再建 PR）
 - PR 无 Test plan 节或 Test plan 空白
 - PR 创建后未经用户同意就自动派子智能体 review
 - 把「开发完成」自行升级成收尾
