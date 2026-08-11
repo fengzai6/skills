@@ -16,8 +16,10 @@ metadata:
 - **`gh` / `glab` 必须在沙箱外执行**（需网络与鉴权）
 - **仅用户要求时**才 commit；**仅用户明确收尾**（开 PR / 建 issue / ship 等）才 push、建 issue、建 PR
 - 不 force push 主分支；不修改 git config
-- commit message：一句简单英文，与 diff 一致，无 AI 署名、无无关键堆砌
+- commit message：一句简单英文，与 diff 一致，无 AI 署名、无无相关堆砌
+- **标题字段纯文本**：issue / PR / commit 的 title 默认纯文本，**禁止** Markdown（`` `code` ``、`**bold**`、链接等）；仅 body 保留 Markdown。用户给了带 Markdown 的标题 → **先剥成纯文本再写入**
 - stage 前看 `git status`；不提交密钥或明显无关文件
+- **默认不用 worktree**：能在当前工作区完成就不要建 worktree。worktree 常缺 `node_modules` 等依赖，测试/命令跑不起来。仅用户明确要求隔离，或当前工作区确实无法安全并行时才用
 
 ## 分支命名
 
@@ -30,8 +32,8 @@ metadata:
 **触发**：用户要 commit/提交，或同意提交当前改动。到此为止：**不 push、不建 issue/PR**。
 
 1. 查看 status / diff；需要时看近期 log 对齐 message 风格
-2. **当前是主分支** → 询问是否新建本地分支再 commit  
-   - 是 → 按上方命名建分支 → stage → commit  
+2. **当前是主分支** → 询问是否新建本地分支再 commit
+   - 是 → 按上方命名建分支 → stage → commit
    - 否（用户坚持主分支）→ 直接 stage + commit，**不二次拦截**
 3. **已在功能分支** → 直接 stage + commit
 4. 可一句提示：需要开 PR/收尾时再说
@@ -43,16 +45,16 @@ metadata:
 **前置**：有未提交改动 → 先走阶段 1；仍在主分支且要开 PR → 同阶段 1 询问建分支（用户坚持则不拦）。
 
 1. **Push** 当前分支到 origin（沙箱外）
-2. **Issue（默认）**  
-   - 标题 = 即将使用的 PR 标题（英文）  
-   - body：**空**  
-   - 用户说不要 issue → 跳过  
+2. **Issue（默认）**
+   - 标题 = 即将使用的 PR 标题（英文）
+   - body：**空**
+   - 用户说不要 issue → 跳过
    - 用户给已有 `#N` → 不新建，PR 关联该号
-3. **PR**（**必须等 issue 创建成功并拿到 `#N` 后再创建**；禁止与 issue 并发，避免编号冲突）  
-   - 标题：英文（有 issue 则与 issue 标题一致）  
-   - body：中文，用下方模板  
-   - 有 issue → 含 `Closes #N`  
-   - assignee：`gh api user -q .login`（失败则省略并告知）  
+3. **PR**
+   - 标题：英文（有 issue 则与 issue 标题一致）
+   - body：中文，用下方模板
+   - 有 issue → 含 `Closes #N`
+   - assignee：`gh api user -q .login`（失败则省略并告知）
    - **非** draft；不默认 label / reviewer
 4. 输出 issue / PR 链接
 5. **可选 PR review**
@@ -62,26 +64,30 @@ metadata:
 
 **逃逸**：
 
-| 用户说 | 行为 |
-|--------|------|
-| 只要 PR | 跳过建 issue |
-| 已有 #N | 不建 issue，按要求 `Closes` / `Refs` |
-| 只要 issue | 只建 issue |
-| 先 draft | 加 `--draft` |
+| 用户说     | 行为                                 |
+| ---------- | ------------------------------------ |
+| 只要 PR    | 跳过建 issue                         |
+| 已有 #N    | 不建 issue，按要求 `Closes` / `Refs` |
+| 只要 issue | 只建 issue                           |
+| 先 draft   | 加 `--draft`                         |
 
 ## PR body 模板
 
 ```markdown
 ## Related
+
 Closes #<n>
 
 ## Summary
+
 <!-- 中文：做了什么、为什么；篇幅随 PR 规模调整，大 PR 可写多段 -->
 
 ## Done
+
 - [x] ...
 
 ## Test plan
+
 - [ ] ...
 ```
 
@@ -116,14 +122,14 @@ EOF
 )" --assignee "$(gh api user -q .login)"
 ```
 
-`gh` / `glab` / `git push`：沙箱外执行。Issue 与 PR **串行**创建，禁止并发。
+`gh` / `glab` / `git push`：沙箱外执行。
 
 ## 红线
 
 - 未到阶段 2 就 push / 建 issue / 建 PR
 - 主分支上未询问就直接 commit（应先问；用户拒绝建分支后可 commit）
 - 在沙箱内跑 `gh` / `glab`
-- **Issue 与 PR 并发创建**（必须先 issue 成功拿到 `#N`，再建 PR）
+- 无必要就创建 worktree（默认当前工作区；worktree 常缺依赖）
 - PR 无 Test plan 节或 Test plan 空白
 - PR 创建后未经用户同意就自动派子智能体 review
 - 把「开发完成」自行升级成收尾
