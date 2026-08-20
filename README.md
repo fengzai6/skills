@@ -25,7 +25,7 @@
   - 路径: [skills/spec-review/SKILL.md](skills/spec-review/SKILL.md) (764 tokens)
   - 用途: 审查 spec、设计文档或技术方案文档，给出修改建议、设计改进意见和补充建议
 - `git-workflow`
-  - 路径: [skills/git-workflow/SKILL.md](skills/git-workflow/SKILL.md) (1674 tokens)
+  - 路径: [skills/git-workflow/SKILL.md](skills/git-workflow/SKILL.md) (2018 tokens)
   - 用途: Git 本地提交与 issue/PR 收尾约定（分支命名、commit、gh 沙箱、PR body 模板）
 - `test-review`
   - 路径: [skills/test-review/SKILL.md](skills/test-review/SKILL.md) (1252 tokens)

@@ -74,27 +74,37 @@ metadata:
 ## PR body 模板
 
 ```markdown
+## Summary
+
 ## Related
 
 Closes #<n>
 
-## Summary
-
-<!-- 中文：做了什么、为什么；篇幅随 PR 规模调整，大 PR 可写多段 -->
-
-## Done
+## Changes
 
 - [x] ...
 
 ## Test plan
 
+- [x] ...
 - [ ] ...
 ```
 
 - 无 issue：删除 `Related` 整节，或按用户改为 `Refs #n`
-- Summary 按改动规模写清，不人为压短
-- Test plan 无步骤时写：`N/A - <原因>`，禁止空节
+- Summary：中文，做了什么、为什么；按改动规模写清，不人为压短。大 PR 可分段，必要时补设计取舍、兼容性、背景
+- Changes：本 PR 的交付点（行为/约定变化），不要写成文件名清单
+- Test plan：已确认且已完成的勾成 `- [x]`；未跑/未确认保持 `- [ ]`。无步骤时写：`N/A - <原因>`。禁止空节
 - 标题英文，body 中文；**模板标题固定英文**
+- 不要把 skill 里的说明性文字写入最终 PR body
+
+**条件节**（不命中则整节删除，禁止空节）：
+
+| 节 | 何时写入 | 写什么 |
+| --- | --- | --- |
+| `## Risk / Impact` | 行为变化 / 迁移 / breaking API；权限、安全、数据；跨模块或默认工作流变化 | 影响面、可能坏的路径、兼容、回滚（只写实际有的） |
+| `## Breaking changes` | 有实际 breaking（调用方必须改） | 什么变了、谁受影响、迁移/替代 |
+
+`Risk / Impact` 禁止写「无明显风险」。合同变化写在 `Breaking changes`，不要两节重复同一段话。
 
 ## 命令备忘
 
@@ -107,16 +117,17 @@ gh issue create --title "English title" --body ""
 
 # PR（非 draft；等 issue 成功后再建；body 含 Closes #N）
 gh pr create --title "English title" --body "$(cat <<'EOF'
-## Related
-Closes #N
-
 ## Summary
 ...
 
-## Done
+## Related
+Closes #N
+
+## Changes
 - [x] ...
 
 ## Test plan
+- [x] ...
 - [ ] ...
 EOF
 )" --assignee "$(gh api user -q .login)"
@@ -131,5 +142,7 @@ EOF
 - 在沙箱内跑 `gh` / `glab`
 - 无必要就创建 worktree（默认当前工作区；worktree 常缺依赖）
 - PR 无 Test plan 节或 Test plan 空白
+- 命中条件却缺失 `Risk / Impact`，或该节空 / 写「无明显风险」
+- 无 breaking 却保留 `Breaking changes` 节
 - PR 创建后未经用户同意就自动派子智能体 review
 - 把「开发完成」自行升级成收尾

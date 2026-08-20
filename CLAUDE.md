@@ -1,5 +1,7 @@
 # Skills 仓库规范
 
+本仓库进行的 skill 编辑都是编辑本仓库内的文件，而不是 `~/.claude/skills/` 下已安装的运行时副本。
+
 ## 结构约定
 
 - 每个 skill 一个独立目录，使用 kebab-case 命名
@@ -86,6 +88,7 @@ description 是代理决定是否读取某个 skill 时看到的关键信息。�
 **目标**：只描述触发条件，不概括执行流程。
 
 **格式要求**：
+
 - 必须以 `Use when...` 开头
 - 聚焦具体场景、症状、文件、技术栈或任务类型
 - 不要概括 skill 的执行流程、产出物或内部步骤，避免 agent 只按摘要执行而跳过正文
@@ -93,14 +96,17 @@ description 是代理决定是否读取某个 skill 时看到的关键信息。�
 - 尽量保持简短，优先控制在 500 字符以内
 
 **好例子**：
+
 > Use when working with PDF files, form filling, document extraction, text extraction, table extraction, or document merging.
 
 **坏例子**：
+
 > Extracts text and tables from PDFs, fills forms, and merges documents.
 
 ## 何时添加脚本
 
 在以下情况添加实用脚本：
+
 - 操作是确定性的（验证、格式化）
 - 相同代码会被重复生成
 - 错误需要显式处理
@@ -110,6 +116,7 @@ description 是代理决定是否读取某个 skill 时看到的关键信息。�
 ## 何时拆分文件
 
 在以下情况拆分为独立文件：
+
 - `SKILL.md` 超过 100 行
 - 内容涉及不同领域（如财务 vs 销售 schema）
 - 高级功能很少被需要
@@ -117,6 +124,7 @@ description 是代理决定是否读取某个 skill 时看到的关键信息。�
 ## 审查清单
 
 起草后逐项验证：
+
 - [ ] description 以 `Use when...` 开头，且只描述触发条件
 - [ ] `SKILL.md` 不超过 100 行
 - [ ] 无时效性信息
