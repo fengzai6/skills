@@ -18,7 +18,7 @@ metadata:
 - 不 force push 主分支；不修改 git config
 - commit message：一句简单英文，与 diff 一致，无 AI 署名、无无相关堆砌
 - **标题字段纯文本**：issue / PR / commit 的 title 默认纯文本，**禁止** Markdown（`` `code` ``、`**bold**`、链接等）；仅 body 保留 Markdown。用户给了带 Markdown 的标题 → **先剥成纯文本再写入**
-- stage 前看 `git status`；不提交密钥或明显无关文件
+- stage 前看 `git status`；**只 stage 本次相关文件**（具名 `git add`，禁止 `git add -A` / `git add .`）；不提交密钥、本地配置、明显无关文件
 - **默认不用 worktree**：能在当前工作区完成就不要建 worktree。worktree 常缺 `node_modules` 等依赖，测试/命令跑不起来。仅用户明确要求隔离，或当前工作区确实无法安全并行时才用
 
 ## 分支命名
@@ -32,11 +32,15 @@ metadata:
 **触发**：用户要 commit/提交，或同意提交当前改动。到此为止：**不 push、不建 issue/PR**。
 
 1. 查看 status / diff；需要时看近期 log 对齐 message 风格
-2. **当前是主分支** → 询问是否新建本地分支再 commit
+2. **排除本地配置**（已跟踪改动和未跟踪都算）：不 stage、不删、不 stash，保持 dirty。对话里一句列出跳过的文件，**不写进 commit / PR**
+   - 判定：文件不属于这次要提交的改动，且像本机覆盖（`.env*`、`*.local.*`、`settings.local.json`、`.claude/settings.local.json`、IDE 配置等）→ 跳过
+   - 同一文件混了任务改动和本地配置 → **整文件不 stage**，指出像本地配置的 hunk，等用户拆开或确认
+   - 拿不准 → 问，不要猜着提交
+3. **当前是主分支** → 询问是否新建本地分支再 commit
    - 是 → 按上方命名建分支 → stage → commit
    - 否（用户坚持主分支）→ 直接 stage + commit，**不二次拦截**
-3. **已在功能分支** → 直接 stage + commit
-4. 可一句提示：需要开 PR/收尾时再说
+4. **已在功能分支** → 直接 stage + commit
+5. 可一句提示：需要开 PR/收尾时再说
 
 ## 阶段 2：Issue + PR
 
@@ -103,10 +107,10 @@ Closes #<n>
 
 **条件节**（不命中则整节删除，禁止空节）：
 
-| 节 | 何时写入 | 写什么 |
-| --- | --- | --- |
-| `## Risk / Impact` | 行为变化 / 迁移 / breaking API；权限、安全、数据；跨模块或默认工作流变化 | 影响面、可能坏的路径、兼容、回滚（只写实际有的） |
-| `## Breaking changes` | 有实际 breaking（调用方必须改） | 什么变了、谁受影响、迁移/替代 |
+| 节                    | 何时写入                                                                 | 写什么                                           |
+| --------------------- | ------------------------------------------------------------------------ | ------------------------------------------------ |
+| `## Risk / Impact`    | 行为变化 / 迁移 / breaking API；权限、安全、数据；跨模块或默认工作流变化 | 影响面、可能坏的路径、兼容、回滚（只写实际有的） |
+| `## Breaking changes` | 有实际 breaking（调用方必须改）                                          | 什么变了、谁受影响、迁移/替代                    |
 
 `Risk / Impact` 禁止写「无明显风险」。合同变化写在 `Breaking changes`，不要两节重复同一段话。
 
@@ -142,6 +146,7 @@ EOF
 ## 红线
 
 - 未到阶段 2 就 push / 建 issue / 建 PR
+- 把本地配置（或混有本地配置的文件）stage / commit；用 `git add -A` 或 `git add .`
 - 主分支上未询问就直接 commit（应先问；用户拒绝建分支后可 commit）
 - 在沙箱内跑 `gh` / `glab`
 - 无必要就创建 worktree（默认当前工作区；worktree 常缺依赖）
