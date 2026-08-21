@@ -84,8 +84,26 @@ function App() {
 - **性能优化**: 如果项目使用了 react-compiler，无需使用 `memo`、`useCallback` 包裹函数，编译器会自动处理。
 - **代码结构**: React 组件代码必须遵循严格的顺序：state（状态定义） => function（函数定义） => useEffect（副作用处理）
 - **Effect**:
-  - 如果需要在 useEffect 用的函数请用 `useEffectEvent` 包裹，从而不用再添加非必要依赖到 useEffect。
-  - 如果该函数不是仅在 useEffect 中使用，可以这样 `const funInEffect = useEffectEvent(fun)` 加一层后去使用。
+  - `useEffect` 里要调、且不应进依赖数组的函数，用 `useEffectEvent` 包一层。
+  - 包装结果**只允许**在 `useEffect` 里调用，禁止用作 JSX / `onClick` / 传给子组件。
+  - 只给 effect 用：直接 `const fun = useEffectEvent(...)`。
+  - effect 内外都要用：原函数留给外面，effect 内必须另包 `const funInEffect = useEffectEvent(fun)`：
+
+```tsx
+const save = () => { /* 读最新值 */ };
+const saveInEffect = useEffectEvent(save);
+
+useEffect(() => {
+  saveInEffect();
+}, [roomId]);
+
+return <button onClick={save}>保存</button>;
+```
+
+```tsx
+// ❌ 双用途却直接 const save = useEffectEvent(...)
+// ❌ saveInEffect 出现在 onClick / JSX / 子组件 props
+```
 - **Hook 设计原则**:
   - 避免设计返回多个不相关状态的「万能 hook」——不同组件消费不同状态会导致不必要的重新渲染。
   - 当用户提出这类需求时，应建议：优先使用 Context 拆分关注点，或按用途拆分为多个独立 hook。

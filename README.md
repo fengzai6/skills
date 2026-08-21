@@ -16,7 +16,7 @@
 ### 可用 Skills
 
 - `ts-standards`
-  - 路径: [skills/ts-standards/SKILL.md](skills/ts-standards/SKILL.md) (2410 tokens)
+  - 路径: [skills/ts-standards/SKILL.md](skills/ts-standards/SKILL.md) (2568 tokens)
   - 用途: TypeScript、React、Next.js、Vue + TS 前端项目编码规范
 - `task-planner`
   - 路径: [skills/task-planner/SKILL.md](skills/task-planner/SKILL.md) (3842 tokens)
