@@ -1,20 +1,20 @@
 ---
 name: test-review
-description: Use when implementation of a behavior change is finished and before claiming completion, committing, or opening a PR; also when asked whether tests for the current change are adequate.
+description: Use when the user asks to review tests or run /test-review; when about to open a PR; or when a large task is finished and test coverage may have been missed. Do not auto-invoke for small, clear changes.
 user-invocable: true
 metadata:
   author: nacho
-  version: 0.2.0
+  version: 0.3.1
 ---
 
-# 测试完备性审查（自动自检）
+# 测试完备性审查
 
-实现写完后的闸门：评判相对本次改动的测试是否够用；**有阻塞则自行补最小测试**。
+评判相对本次改动的测试是否够用；**有阻塞则自行补最小测试**。
 
 - 不管「命令有没有跑通」→ `verification-before-completion`
 - 不管「要不要先写测试再写代码」→ TDD
 
-> **给执行者**：你被派来跑本 skill，或主会话自行执行时，**只做下方工作流**。禁止再派子智能体套娃。是否派子智能体由主会话按 `main` 规则决定，不写在执行步骤里。
+> **给执行者**：**只做下方工作流**。禁止再派子智能体套娃。
 
 ## 硬规则（与 main 测试规范一致）
 
@@ -25,13 +25,6 @@ metadata:
 - **禁止**对未确认行为凭空写断言；行为不确定 → 标 `需用户确认`，**不要瞎补**
 - **阻塞缺口：自行补最小测试**（有测试依赖时）；用户明确跳过除外
 - **建议项**：可列在报告里，不强制大改
-
-## 何时适用
-
-- 实现产生行为变化，且将要声称完成 / commit / 开 PR
-- 用户问测试够不够
-
-**跳过**：纯文档、文案、无行为变化的配置（除非用户点名）
 
 ## 工作流
 
