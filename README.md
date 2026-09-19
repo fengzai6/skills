@@ -7,7 +7,7 @@
 ### 可用 Rules
 
 - `main`
-  - 路径: [rules/main.md](rules/main.md) (5740 tokens)
+  - 路径: [rules/main.md](rules/main.md) (5826 tokens)
   - 用途: 默认通用规则，全局行为约束与通用编码规范，所有项目通用，应放置在 `~/.claude/CLAUDE.md` 中始终生效，正常使用时复制这个文件内容即可
 - `codegraph`
   - 路径: [rules/codegraph.md](rules/codegraph.md) (438 tokens)
@@ -21,11 +21,20 @@
 - `business-roadmap`
   - 路径: [skills/business-roadmap/SKILL.md](skills/business-roadmap/SKILL.md) (636 tokens)
   - 用途: 用户主动调用时进行业务宏观规划，梳理发展方向、演进阶段、关键依赖与成功判据
+- `code-review`
+  - 路径: [skills/code-review/SKILL.md](skills/code-review/SKILL.md) (594 tokens)
+  - 用途: 对代码变更、diff、commit 或实现做只读审查，按正确性、安全、性能、可维护性、风格排序输出 findings
+- `pr-review`
+  - 路径: [skills/pr-review/SKILL.md](skills/pr-review/SKILL.md) (648 tokens)
+  - 用途: 基于 code-review 审查 PR，开始前确认直接回复还是远程回复
+- `handle-review`
+  - 路径: [skills/handle-review/SKILL.md](skills/handle-review/SKILL.md) (678 tokens)
+  - 用途: 验证 PR review 或用户提供的 review 结论，并派一个 subagent 处理确认成立的修复
 - `spec-review`
   - 路径: [skills/spec-review/SKILL.md](skills/spec-review/SKILL.md) (764 tokens)
   - 用途: 审查 spec、设计文档或技术方案文档，给出修改建议、设计改进意见和补充建议
 - `git-workflow`
-  - 路径: [skills/git-workflow/SKILL.md](skills/git-workflow/SKILL.md) (2595 tokens)
+  - 路径: [skills/git-workflow/SKILL.md](skills/git-workflow/SKILL.md) (2583 tokens)
   - 用途: Git 本地提交与 issue/PR 收尾约定（分支命名、commit、gh 沙箱、PR body 模板）
 - `test-review`
   - 路径: [skills/test-review/SKILL.md](skills/test-review/SKILL.md) (1235 tokens)
@@ -52,6 +61,12 @@ skills/
 │   │   ├── SKILL.md
 │   │   └── agents/
 │   │       └── openai.yaml
+│   ├── code-review/            # 代码审查 skill
+│   │   └── SKILL.md
+│   ├── pr-review/              # PR 审查 skill
+│   │   └── SKILL.md
+│   ├── handle-review/          # Review 结论处理 skill
+│   │   └── SKILL.md
 │   ├── spec-review/            # Spec 文档审查 skill
 │   │   └── SKILL.md
 │   ├── git-workflow/           # Git 提交与 PR 收尾 skill

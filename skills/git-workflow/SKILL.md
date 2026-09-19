@@ -62,9 +62,9 @@ metadata:
    - **非** draft；不默认 label / reviewer
 4. 输出 issue / PR 链接
 5. **可选 PR review**
-   - PR 创建完成并输出链接后，询问用户是否需要派子智能体 review 该 PR
-   - 用户同意 → 派子智能体基于 PR diff / 链接做 review，并回收报告
-   - 用户拒绝或未要求 → 不派，不阻塞收尾
+   - PR 创建完成并输出链接后，询问用户是否需要 review 该 PR
+   - 用户同意 → 调用 `/pr-review`，按该 skill 的输入与回复方式约定执行
+   - 用户拒绝或未要求 → 不 review，不阻塞收尾
 
 **逃逸**：
 

@@ -172,8 +172,11 @@ grilling / Superpowers 按下方分流匹配，不匹配就不要调。实现类
 - 任务大、风险高、需要审计和对齐（跨模块、多方案、跨会话、要落 spec / plans）→ Superpowers（`brainstorming` / `writing-plans`）；需求已清晰时不必再 grilling
 - 涉及 commit / 建分支 / push / 开 issue 或 PR / 收尾交付，或使用 `gh`/`glab` → `/git-workflow`
 - `/test-review`：用户显式要求时调用；即将开 PR 时调用；任务完成且改动大、自己可能遗漏测试时也可自行调用。小改动（修小 bug、补个函数）不要自动调
+- 用户要求审查代码变更、diff、commit 或实现 → `/code-review`
+- 用户要求审查 PR、提供 PR 编号/URL 或要求对分支变更集做 review → `/pr-review`（开始前确认直接回复还是远程回复）
+- 用户要求处理 PR review comment，或直接提供 review 结论要求跟进 → `/handle-review`
 - 涉及人天估算、报价单、人天报价、按 FR 拆报价明细 → `/man-day-quote`（调用后、动手前先问方式与落地路径）
-- 涉及代码审查 / 调试 / 测试 / 实现功能 / 代码变更 → 检查对应系统 skill（如 `code-review`、`systematic-debugging`、`test-driven-development`）；`brainstorming` 只走上方 Superpowers 分流，不因「有代码变更」就调
+- 涉及调试 / 测试 / 实现功能 / 代码变更 → 检查对应系统 skill（如 `systematic-debugging`、`test-driven-development`）；`brainstorming` 只走上方 Superpowers 分流，不因「有代码变更」就调
 
 #### 常见自我合理化陷阱（出现以下想法时，立即停止并按匹配标准处理）
 
