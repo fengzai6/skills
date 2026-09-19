@@ -46,7 +46,7 @@ Loop Engineering 是默认任务编排方式：把工作拆成可观察、可验
 每个完整 loop 按以下顺序推进：
 
 1. **Intent（意图）**：确认目标、边界、非目标和完成标准；不确定就先问，不猜。
-2. **Plan（路径）**：选择最轻可行载体；轻量任务直接做（会话内 TODO 可选），中等模糊任务先 `/grilling` 再短方案或 TODO，高风险或跨会话任务才 Superpowers 并落 spec / plans / `.tasks`。
+2. **Plan（路径）**：选择最轻可行载体；轻量任务直接做（会话内 TODO 可选），中等模糊任务先 `/grilling` 再短方案或 TODO，高风险或跨会话任务才 Superpowers 并落 spec / plans。
 3. **Act（执行）**：只做当前 loop 的最小必要改动；不扩大范围，不顺手重构无关内容。
 4. **Check（检查）**：用能证明当前 loop 的证据检查结果，如 diff、测试、脚本输出、截图、人工确认等。
 5. **Adjust（修正）**：检查失败则修正并回到 Check；检查通过才进入下一个 loop。
@@ -56,7 +56,7 @@ Loop Engineering 是默认任务编排方式：把工作拆成可观察、可验
 
 - **轻量任务**：需求清晰、低风险（修小 bug、补个函数、当前会话可完成）→ 直接做；会话内 TODO / checklist 即可，不调用 grilling / Superpowers，不写 spec / plans。
 - **中等任务**：需求模糊，但任务不大 → 调用 `/grilling` 对齐；用短方案或会话内 TODO 跟踪，不升级 Superpowers，不默认落文档。
-- **重型任务**：任务大、风险高、需要审计和对齐（跨模块、多方案、跨会话、用户要求计划文档）→ Superpowers（`brainstorming` / `writing-plans`），升级为 spec / plans / `.tasks` / subagent 编排。需求已清晰时不必再 grilling。
+- **重型任务**：任务大、风险高、需要审计和对齐（跨模块、多方案、跨会话、用户要求计划文档）→ Superpowers（`brainstorming` / `writing-plans`），升级为 spec / plans / subagent 编排。需求已清晰时不必再 grilling。
 - **升级原则**：只有当前 loop 的信息不足、风险过高或无法可靠恢复时才升级；不要为了流程完整而升级。不要把小而模糊的任务升级成 Superpowers。
 
 ### 1.3 退出条件
@@ -166,7 +166,7 @@ grilling / Superpowers 按下方分流匹配，不匹配就不要调。实现类
 
 - 涉及 TypeScript / TSX / TS 文件、`tsconfig.json`、`package.json` 前端依赖 → `/ts-standards`
 - 涉及 React / Next.js / Vue + TS 组件、hooks、路由、状态管理、样式 → `/ts-standards`
-- 用户主动要求编写计划文档 / 任务文档 / `.tasks` 文档 → `/task-planner`
+- 用户主动要求业务宏观规划、发展规划、路线图或阶段演进设计 → `/business-roadmap`
 - 需求清晰且改动小（修小 bug、补个函数）→ **不调用** `/grilling` / Superpowers，直接做（其他已匹配的实现类 skill 如 `/ts-standards` 仍要调）
 - 需求模糊，但任务不大 → `/grilling`；对齐前不编码，不对齐不升级 Superpowers
 - 任务大、风险高、需要审计和对齐（跨模块、多方案、跨会话、要落 spec / plans）→ Superpowers（`brainstorming` / `writing-plans`）；需求已清晰时不必再 grilling

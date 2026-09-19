@@ -7,7 +7,7 @@
 ### 可用 Rules
 
 - `main`
-  - 路径: [rules/main.md](rules/main.md) (5742 tokens)
+  - 路径: [rules/main.md](rules/main.md) (5740 tokens)
   - 用途: 默认通用规则，全局行为约束与通用编码规范，所有项目通用，应放置在 `~/.claude/CLAUDE.md` 中始终生效，正常使用时复制这个文件内容即可
 - `codegraph`
   - 路径: [rules/codegraph.md](rules/codegraph.md) (438 tokens)
@@ -18,9 +18,9 @@
 - `ts-standards`
   - 路径: [skills/ts-standards/SKILL.md](skills/ts-standards/SKILL.md) (2568 tokens)
   - 用途: TypeScript、React、Next.js、Vue + TS 前端项目编码规范
-- `task-planner`
-  - 路径: [skills/task-planner/SKILL.md](skills/task-planner/SKILL.md) (3842 tokens)
-  - 用途: 将复杂任务文档化为可追踪的计划，支持子任务编排、状态管理和跨会话上下文传递
+- `business-roadmap`
+  - 路径: [skills/business-roadmap/SKILL.md](skills/business-roadmap/SKILL.md) (636 tokens)
+  - 用途: 用户主动调用时进行业务宏观规划，梳理发展方向、演进阶段、关键依赖与成功判据
 - `spec-review`
   - 路径: [skills/spec-review/SKILL.md](skills/spec-review/SKILL.md) (764 tokens)
   - 用途: 审查 spec、设计文档或技术方案文档，给出修改建议、设计改进意见和补充建议
@@ -31,7 +31,7 @@
   - 路径: [skills/test-review/SKILL.md](skills/test-review/SKILL.md) (1235 tokens)
   - 用途: 用户点名、即将开 PR、或大任务完成怕遗漏时审查测试完备性并按需补测
 - `man-day-quote`
-  - 路径: [skills/man-day-quote/SKILL.md](skills/man-day-quote/SKILL.md) (2157 tokens)
+  - 路径: [skills/man-day-quote/SKILL.md](skills/man-day-quote/SKILL.md) (2162 tokens)
   - 用途: 人天报价（调用后先问方式与落地路径；线 A 直接估 / 线 B 先设计再估；确认后 py 生成 xlsx）
 
 ## 目录结构
@@ -48,8 +48,10 @@ skills/
 ├── skills/                     # Skills 目录
 │   ├── ts-standards/           # TypeScript / React 相关 skill
 │   │   └── SKILL.md
-│   ├── task-planner/           # 任务规划与文档化 skill
-│   │   └── SKILL.md
+│   ├── business-roadmap/       # 业务宏观规划 skill
+│   │   ├── SKILL.md
+│   │   └── agents/
+│   │       └── openai.yaml
 │   ├── spec-review/            # Spec 文档审查 skill
 │   │   └── SKILL.md
 │   ├── git-workflow/           # Git 提交与 PR 收尾 skill

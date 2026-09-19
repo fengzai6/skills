@@ -1,0 +1,7 @@
+interface:
+  display_name: "业务路线图"
+  short_description: "梳理业务宏观方向、演进阶段与成功判据"
+  default_prompt: "Use $business-roadmap to define a macro business roadmap."
+
+policy:
+  allow_implicit_invocation: false
