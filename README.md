@@ -7,7 +7,7 @@
 ### 可用 Rules
 
 - `main`
-  - 路径: [rules/main.md](rules/main.md) (5717 tokens)
+  - 路径: [rules/main.md](rules/main.md) (5752 tokens)
   - 用途: 默认通用规则，全局行为约束与通用编码规范，所有项目通用，应放置在 `~/.claude/CLAUDE.md` 中始终生效，正常使用时复制这个文件内容即可
 - `codegraph`
   - 路径: [rules/codegraph.md](rules/codegraph.md) (438 tokens)
@@ -22,10 +22,10 @@
   - 路径: [skills/business-roadmap/SKILL.md](skills/business-roadmap/SKILL.md) (636 tokens)
   - 用途: 用户主动调用时进行业务宏观规划，梳理发展方向、演进阶段、关键依赖与成功判据
 - `code-review`
-  - 路径: [skills/code-review/SKILL.md](skills/code-review/SKILL.md) (594 tokens)
+  - 路径: [skills/code-review/SKILL.md](skills/code-review/SKILL.md) (1143 tokens)
   - 用途: 对代码变更、diff、commit 或实现做只读审查，按正确性、安全、性能、可维护性、风格排序输出 findings
 - `pr-review`
-  - 路径: [skills/pr-review/SKILL.md](skills/pr-review/SKILL.md) (592 tokens)
+  - 路径: [skills/pr-review/SKILL.md](skills/pr-review/SKILL.md) (993 tokens)
   - 用途: 基于 code-review 审查 PR，结尾询问是否将结论回复到 PR
 - `handle-review`
   - 路径: [skills/handle-review/SKILL.md](skills/handle-review/SKILL.md) (678 tokens)

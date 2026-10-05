@@ -19,7 +19,7 @@
 6. **开发流程补充**（grilling / Superpowers / 直接做）：
    - 需求清晰且改动小（修小 bug、补个函数）→ 直接做，不调用 grilling / Superpowers。
    - 需求模糊，但任务不大 → 调用 `/grilling` 对齐后再做；不升级 Superpowers，不落设计文档。
-   - 任务大、风险高、需要审计和对齐 → 使用 Superpowers（如 `brainstorming` / `writing-plans`），必要时落 spec / plans，确认后再实施。需求已清晰时不必再 grilling。
+   - 任务大、风险高、需要审计和对齐 → 使用 Superpowers（如 `brainstorming`），必要时落 spec / plans，确认后再实施。需求已清晰时不必再 grilling。
 7. **禁止超出范围**:
    - 只做用户明确要求的事，不做任何范围外的扩展——不自行加功能、不自行改设计、不自行换方案。
    - 例外：若在实现过程中发现以下情况，先停笔，指出问题并给建议方案，等确认再写（这不算超出范围）：
@@ -56,7 +56,7 @@ Loop Engineering 是默认任务编排方式：把工作拆成可观察、可验
 
 - **轻量任务**：需求清晰、低风险（修小 bug、补个函数、当前会话可完成）→ 直接做；会话内 TODO / checklist 即可，不调用 grilling / Superpowers，不写 spec / plans。
 - **中等任务**：需求模糊，但任务不大 → 调用 `/grilling` 对齐；用短方案或会话内 TODO 跟踪，不升级 Superpowers，不默认落文档。
-- **重型任务**：任务大、风险高、需要审计和对齐（跨模块、多方案、跨会话、用户要求计划文档）→ Superpowers（`brainstorming` / `writing-plans`），升级为 spec / plans / subagent 编排。需求已清晰时不必再 grilling。
+- **重型任务**：任务大、风险高、需要审计和对齐（跨模块、多方案、跨会话、用户要求计划文档）→ Superpowers（`brainstorming`），升级为 spec / plans / subagent 编排。需求已清晰时不必再 grilling。
 - **升级原则**：只有当前 loop 的信息不足、风险过高或无法可靠恢复时才升级；不要为了流程完整而升级。不要把小而模糊的任务升级成 Superpowers。
 
 ### 1.3 退出条件
@@ -96,6 +96,7 @@ Loop Engineering 是默认任务编排方式：把工作拆成可观察、可验
 
 文档和注释只写最终行为、约束、决策和结果。
 
+- 只保留理解和执行当前行为所需的信息；与当前行为、约束、决策或结果无关的维护归属、背景和解释不写。
 - 写「现在是什么」，不写「曾经不是什么」。
 - 用户否掉某个方案后，只保留修正后的结论；不要把被否方案写进范围、非目标或共识。
 - 不要记录讨论过程、纠偏、自我解释，或为了证明自己听懂而复述旧方案。
@@ -169,7 +170,7 @@ grilling / Superpowers 按下方分流匹配，不匹配就不要调。实现类
 - 用户主动要求业务宏观规划、发展规划、路线图或阶段演进设计 → `/business-roadmap`
 - 需求清晰且改动小（修小 bug、补个函数）→ **不调用** `/grilling` / Superpowers，直接做（其他已匹配的实现类 skill 如 `/ts-standards` 仍要调）
 - 需求模糊，但任务不大 → `/grilling`
-- 任务大、风险高、需要审计和对齐（跨模块、多方案、跨会话、要落 spec / plans）→ Superpowers（`brainstorming` / `writing-plans`）
+- 任务大、风险高、需要审计和对齐（跨模块、多方案、跨会话、要落 spec / plans）→ Superpowers（`brainstorming`）
 - 涉及 commit / 建分支 / push / 开 issue 或 PR / 收尾交付，或使用 `gh`/`glab` → `/git-workflow`
 - 用户要求审查测试，或即将开 PR、大任务完成后可能遗漏测试 → `/test-review`
 - 用户要求审查代码变更、diff、commit 或实现 → `/code-review`
