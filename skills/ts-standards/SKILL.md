@@ -84,6 +84,7 @@ function App() {
 - **性能优化**: 如果项目使用了 react-compiler，无需使用 `memo`、`useCallback` 包裹函数，编译器会自动处理。
 - **代码结构**: React 组件代码必须遵循严格的顺序：state（状态定义） => function（函数定义） => useEffect（副作用处理）
 - **Effect**:
+  - `useEffect` 的依赖数组只添加必要的数据依赖，禁止将函数添加到依赖数组中。例如依赖 `roomId` 时使用 `[roomId]`，不要写成 `[roomId, save]`。
   - `useEffect` 里要调、且不应进依赖数组的函数，用 `useEffectEvent` 包一层。
   - 包装结果**只允许**在 `useEffect` 里调用，禁止用作 JSX / `onClick` / 传给子组件。
   - 只给 effect 用：直接 `const fun = useEffectEvent(...)`。
