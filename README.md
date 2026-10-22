@@ -16,7 +16,7 @@
 ### 可用 Skills
 
 - `ts-standards`
-  - 路径: [skills/ts-standards/SKILL.md](skills/ts-standards/SKILL.md) (2632 tokens)
+  - 路径: [skills/ts-standards/SKILL.md](skills/ts-standards/SKILL.md) (3335 tokens)
   - 用途: TypeScript、React、Next.js、Vue + TS 前端项目编码规范，含 React `useEffect` 依赖数组约束
 - `business-roadmap`
   - 路径: [skills/business-roadmap/SKILL.md](skills/business-roadmap/SKILL.md) (636 tokens)
