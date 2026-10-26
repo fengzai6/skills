@@ -177,8 +177,9 @@ grilling / Superpowers 按下方分流匹配，不匹配就不要调。实现类
 
 以下任一条件满足，即视为匹配，按下列规则处理：
 
-- 涉及 TypeScript / TSX / TS 文件、`tsconfig.json`、`package.json` 前端依赖 → `/ts-standards`
-- 涉及 React / Next.js / Vue + TS 组件、hooks、路由、状态管理、样式 → `/ts-standards`
+- 涉及 TypeScript / TSX / TS 文件、`tsconfig.json`、类型定义 → `/ts-standards`
+- 涉及 Node.js 后端、脚本、工具链的 TypeScript 代码 → `/ts-standards`
+- 涉及 React / Next.js 组件、hooks、路由、状态管理、样式 → `/ts-standards`
 - 用户主动要求业务宏观规划、发展规划、路线图或阶段演进设计 → `/business-roadmap`
 - 需求清晰且改动小（修小 bug、补个函数）→ **不调用** `/grilling` / Superpowers，直接做（其他已匹配的实现类 skill 如 `/ts-standards` 仍要调）
 - 需求模糊，但任务不大 → `/grilling`

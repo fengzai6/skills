@@ -1,177 +1,49 @@
 ---
 name: ts-standards
-description: Use when the task involves TypeScript frontend code, React, Next.js, Vue + TS, TSX/TS files, tsconfig.json, package.json frontend dependencies, components, hooks, routing, state management, styling, or TypeScript types.
+description: Use when the task involves TypeScript code, TS/TSX files, tsconfig.json, package.json dependencies, type definitions, or writing code in any TypeScript project (frontend, Node.js backend, scripts, tooling).
 user-invocable: true
 metadata:
   author: fengzai6
   version: 0.1.0
 ---
 
-# TypeScript/React 前端编码规范
+# TypeScript 编码规范
 
-本规范适用于 TypeScript + React 技术栈的前端项目。
+本规范适用于所有 TypeScript 项目（前端、Node.js 后端、脚本、工具链）。
 
----
+## 参考文件索引
+
+命中对应场景时，必须先读取对应参考文件再写代码：
+
+| 场景                                        | 参考文件                                       |
+| ------------------------------------------- | ---------------------------------------------- |
+| 写或改 React 组件、Hook、路由、状态、样式     | [references/react.md](references/react.md)     |
+| 列表/画布节点数量大、拖拽、渲染卡顿           | [references/performance.md](references/performance.md) |
+| 删除、清空、覆盖、批量操作、支付、发布等      | [references/interaction.md](references/interaction.md) |
 
 ## 1. 命名与导入规范
 
-- **文件/目录**: kebab-case（如 `chat-input/`、`use-current-conversation.ts`）
-- **组件**: PascalCase，使用命名导出（`export const ChatInput = ...`），不用默认导出
+- **文件/目录**: kebab-case（如 `user-service.ts`、`use-current-conversation.ts`）
+- **类型/接口/类**: PascalCase（如 `UserService`、`IUserStore`）
 - **函数/变量**: camelCase（如 `getResolvedTheme`）
 - **常量**: UPPER_CASE（如 `PATHS`、`THEME`、`MESSAGE_ROLE`）
 - **接口**: `I` 前缀（如 `IChatStore`、`IMessage`）
-- **组件 Props**: `组件名Props`（如 `IChatInputProps`）
 - **路径别名**: `@/` 指向 `src/`（如 `import { cn } from "@/utils/cn"`）
-- **SVG 导入**: `?react` 后缀导入为组件（如 `import LogoIcon from "@/assets/icons/logo.svg?react"`）
 
----
+## 2. 导出规范
 
-## 2. 组件规范
+- **命名导出**: 优先使用命名导出（`export const UserService = ...`），不用默认导出。
+- **禁止桶导出**: 不用 barrel export（`index.ts` 里 re-export 一堆模块），避免打包体积膨胀与循环依赖。
+- **单一职责文件**: 一个文件只导出一个主要实体；类型、工具、业务实体分文件存放。
 
-- **组件封装**: 对于重复出现的代码，应尽可能封装成通用组件或 hook。
-- **优先复用**: 优先使用框架或自带 `components` 目录下的组件。
-- **文件结构**: 每个组件一个目录，入口为 `index.tsx`（如 `components/chat-input/index.tsx`）。
-- **导出方式**: 使用命名导出（`export const ChatInput = ...`），不用默认导出。
-- **Props 命名**: 接口命名为 `组件名Props`（如 `IChatInputProps`）。
+## 3. 目录结构
 
----
+按目标项目已有的目录约定执行，不擅自新增层级或重命名既有目录。新建目录前先确认项目内同类代码放在哪里。
 
-## 3. React & 框架规范
+## 4. TypeScript 最佳实践
 
-### 3.1 App.tsx 组合根
-
-App.tsx 作为组合根，将不同关注点的副作用拆分为独立 Hook，在组件顶层调用即生效，不接收返回值：
-
-```tsx
-function App() {
-  useInitialization();              // 初始化 token / tenant
-  useSyncTheme();                   // 主题同步（含系统主题监听）
-  return < />;
-}
-```
-
-### 3.2 路由规范
-
-- **路由**: 使用 React Router 的 `createBrowserRouter`。
-- **路径常量**: 路由路径定义为常量 `PATHS` 对象，放在 `constants/routes.ts`。
-
-### 3.3 状态管理（Zustand）
-
-- **持久化**: 使用 zustand + persist 中间件持久化。
-- **Store 文件**: 放在 `stores/` 目录。
-- **接口命名**: `I` 前缀（如 `IChatStore`、`ISettingsStore`）。
-- **导出命名**: `useXxxStore`（如 `useChatStore`、`useSettingsStore`）。
-- **选择多个字段**: 使用 `useShallow` 避免不必要的重渲染。
-- **持久化字段控制**: 使用 `partialize` 控制哪些字段持久化。
-
-### 3.4 Hooks 编写规范
-
-- **文件命名**: `use-xxx.ts`（kebab-case），放在 `hooks/` 目录。
-- **纯函数工具**: 纯函数工具逻辑放在 Hook 文件顶部，不放在 Hook 内部。
-- **复杂 Hook 注释**: 复杂 Hook 需有 JSDoc 注释说明用途。
-
-### 3.5 服务层请求 Hook 规范
-
-当接口需要**缓存和多组件共用**时，在 `services/hooks/` 目录下新增 `use-xxx-request.ts`，根据项目实际使用的请求库选择实现方式：
-
-- **ahooks**: 使用 `useRequest` 封装（需项目已安装 `ahooks`）
-- **TanStack Query**: 使用 `useQuery` / `useMutation` 封装（需项目已安装 `@tanstack/react-query`）
-
-判定标准：单组件内一次性请求、无需缓存的接口，直接在组件内调用即可，不需要抽 Hook。
-
-### 3.6 其他
-
-- **性能优化**: 如果项目使用了 react-compiler，无需使用 `memo`、`useCallback` 包裹函数，编译器会自动处理。
-- **代码结构**: React 组件代码必须遵循严格的顺序：state（状态定义） => function（函数定义） => useEffect（副作用处理）
-- **Effect**:
-  - `useEffect` 的依赖数组只添加必要的数据依赖，禁止将函数添加到依赖数组中。例如依赖 `roomId` 时使用 `[roomId]`，不要写成 `[roomId, save]`。
-  - `useEffect` 里要调、且不应进依赖数组的函数，用 `useEffectEvent` 包一层。
-  - 包装结果**只允许**在 `useEffect` 里调用，禁止用作 JSX / `onClick` / 传给子组件。
-  - 只给 effect 用：直接 `const fun = useEffectEvent(...)`。
-  - effect 内外都要用：原函数留给外面，effect 内必须另包 `const funInEffect = useEffectEvent(fun)`：
-
-```tsx
-const save = () => { /* 读最新值 */ };
-const saveInEffect = useEffectEvent(save);
-
-useEffect(() => {
-  saveInEffect();
-}, [roomId]);
-
-return <button onClick={save}>保存</button>;
-```
-
-```tsx
-// ❌ 双用途却直接 const save = useEffectEvent(...)
-// ❌ saveInEffect 出现在 onClick / JSX / 子组件 props
-```
-- **Hook 设计原则**:
-  - 避免设计返回多个不相关状态的「万能 hook」——不同组件消费不同状态会导致不必要的重新渲染。
-  - 当用户提出这类需求时，应建议：优先使用 Context 拆分关注点，或按用途拆分为多个独立 hook。
-
-### 3.7 大规模渲染优化
-
-- **优先虚拟列表**: 大量节点的列表一律用虚拟列表，推荐 antd 的 Listy 组件或其底层 `@rc-component/listy`；项目未安装时先询问用户是否引入，不要自行添加依赖。
-- **高度不定的虚拟列表**: item 高度不固定时用「估算高度先排布、渲染后实测修正」：
-  - 保留一个默认 `itemHeight` 作为估算值。
-  - 已渲染的 item 用 DOM 的 `offsetHeight + margin` 实测，把实际高度写入缓存。
-  - 可视范围按截至当前位置的累计高度计算，不用 `scrollTop / itemHeight` 简单相除。
-  - item 内容展开导致高度变化时，靠 `ResizeObserver` 触发重新测量与范围重算。
-  - 只渲染可视范围附近的项目，上下留白用占位高度和 `translateY` 维持滚动条位置。
-- **滚动容器高度不固定**: 通过实时计算把容器高度传给虚拟列表。
-- **拖拽场景不能隐藏节点**: 拖拽时节点必须都在 DOM 中，虚拟列表不可用，改用分级渲染：
-  - 可视区域内的节点渲染完整内容。
-  - 可视区域外的节点只保留一个占位 DOM，不渲染其内部内容。
-  - 占位元素宽高必须与真实节点一致，避免进入视口时布局跳动。
-
----
-
-## 4. 样式与 UI 还原
-
-- **原子样式**: 项目如果配置了原子样式（tailwind、nativewind），优先使用原子样式实现。
-- **Tailwind CSS**: 使用 Tailwind CSS + 自定义 design token（如有不同主题设计）。
-- **类名合并**: 使用 `cn()` 工具函数（clsx + twMerge）合并类名，避免模板字符串拼接。
-- **Ant Design 语义化样式覆盖**:
-  - 当项目使用 Tailwind CSS，且需要对 antd 组件做语义化样式覆盖时，优先使用 `classNames`。
-  - 只有在 `classNames` 无法满足需求时，才使用 `styles`。
-- **Tailwind CSS Important 规则**:
-  - 使用 Tailwind CSS 时，important 标记应放在类名尾部，如 `bg-red-500!`，而非头部。
-
----
-
-## 5. 目录结构
-
-```
-src/
-├── assets/              # 静态资源（SVG 图标等）
-├── components/          # 组件，每个组件一个目录，目录下 index.tsx
-│   └── chat-input/
-│       └── index.tsx
-├── constants/           # 常量定义
-├── hooks/               # 自定义 Hook，一个文件一个 Hook
-├── layouts/             # 布局组件（可选）
-├── pages/               # 页面组件
-├── router/              # 路由配置（createBrowserRouter）
-├── services/            # 服务层
-│   ├── api/
-│   ├── hooks/           # 请求 Hook（use-xxx-request），缓存和共用接口封装
-│   └── types/           # 服务层类型定义
-├── stores/              # 状态管理
-├── types/               # 应用层类型定义
-└── utils/               # 通用工具函数
-```
-
----
-
-## 6. TypeScript 最佳实践
-
-### 通用规则
-
-- **No Any**: 尽量不使用 `any`。
-- **类型复用**: 涉及 TS 类型和表单的，优先使用原有 TS 类型，不应自己创建类型。
-
-### 详细规范
-
+- **No Any**: 尽量不使用 `any`；无法确定类型时用 `unknown` 再收窄。
+- **类型复用**: 优先复用项目已有类型，不应自己创建重复类型。
 - **全面的强类型**: 在整个代码库中确保完善的强类型定义，以保证类型安全。
 - **接口与类型别名**: 适当地使用 Interface（接口）和 Type Aliases（类型别名）。
 - **清晰的定义**: 编写清晰且易读的类型定义。
@@ -184,17 +56,13 @@ src/
   export type Role = (typeof ROLE)[keyof typeof ROLE];
   ```
 
----
-
-## 7. 数据处理
+## 5. 数据处理
 
 - **深拷贝**:
   - 当数据后续操作存在影响原对象的风险时，优先使用 `structuredClone` 进行深拷贝。
   - 不要使用 `JSON.parse(JSON.stringify(...))` 这类有信息丢失风险的方案。
 
----
-
-## 8. 依赖安全
+## 6. 依赖安全
 
 - **Minimum Release Age 检查**: 在项目初始化或添加新依赖时，应检查项目是否配置了 Minimum Release Age，防止使用刚发布不到 1 天的新版本包。
   - **检测方式**: 检查项目根目录是否存在对应的包管理器配置文件，以及其中是否包含 Minimum Release Age 相关配置。
@@ -202,13 +70,3 @@ src/
     - **npm**: 在 `.npmrc` 文件中添加 `minimum-release-age=1`。
     - **yarn**: 在 `.yarnrc.yml` 中添加 `npmMinimalAgeGate: 1440`。
     - **pnpm**: 要求 pnpm >= 11（默认启用 1 天的 Minimum Release Age，无需额外配置）。
-
----
-
-## 9. 危险操作二次确认
-
-涉及删除、覆盖、批量修改、不可逆提交等可能造成数据损失或不可逆后果的操作，必须在执行前弹二次确认。
-
-- **必须确认**: 删除、清空、覆盖已有内容、批量操作、不可撤销的对外动作（支付、发布、发送）、中止正在运行的流程。
-- **无需确认**: 只读与筛选排序、新建与草稿保存、已有等效撤销入口的操作。
-- **实现要求**: 复用项目现有确认组件；文案点名操作对象并说明不可逆后果，禁用「确定吗？」式文案；确认按钮用 `danger` 样式；确认回调返回 Promise 防重复提交，失败回滚本地状态。

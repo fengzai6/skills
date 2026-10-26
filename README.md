@@ -7,7 +7,7 @@
 ### 可用 Rules
 
 - `main`
-  - 路径: [rules/main.md](rules/main.md) (6558 tokens)
+  - 路径: [rules/main.md](rules/main.md) (6574 tokens)
   - 用途: 默认通用规则，全局行为约束与通用编码规范，所有项目通用，应放置在 `~/.claude/CLAUDE.md` 中始终生效，正常使用时复制这个文件内容即可
 - `codegraph`
   - 路径: [rules/codegraph.md](rules/codegraph.md) (438 tokens)
@@ -16,8 +16,8 @@
 ### 可用 Skills
 
 - `ts-standards`
-  - 路径: [skills/ts-standards/SKILL.md](skills/ts-standards/SKILL.md) (3335 tokens)
-  - 用途: TypeScript、React、Next.js、Vue + TS 前端项目编码规范，含 React `useEffect` 依赖数组约束
+  - 路径: [skills/ts-standards/SKILL.md](skills/ts-standards/SKILL.md) (1141 tokens)
+  - 用途: TypeScript 项目编码规范（前端、Node.js 后端、脚本、工具链），前端细节见 `references/`
 - `business-roadmap`
   - 路径: [skills/business-roadmap/SKILL.md](skills/business-roadmap/SKILL.md) (636 tokens)
   - 用途: 用户主动调用时进行业务宏观规划，梳理发展方向、演进阶段、关键依赖与成功判据
@@ -55,8 +55,9 @@ skills/
 │   ├── main.md                 # 默认通用规则
 │   └── codegraph.md            # CodeGraph 可选规则
 ├── skills/                     # Skills 目录
-│   ├── ts-standards/           # TypeScript / React 相关 skill
-│   │   └── SKILL.md
+│   ├── ts-standards/           # TypeScript 项目编码规范 skill
+│   │   ├── SKILL.md
+│   │   └── references/         # 按触发条件拆分：react / performance / interaction
 │   ├── business-roadmap/       # 业务宏观规划 skill
 │   │   ├── SKILL.md
 │   │   └── agents/
