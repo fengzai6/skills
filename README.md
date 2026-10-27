@@ -34,8 +34,8 @@
   - 路径: [skills/spec-review/SKILL.md](skills/spec-review/SKILL.md) (764 tokens)
   - 用途: 审查 spec、设计文档或技术方案文档，给出修改建议、设计改进意见和补充建议
 - `git-workflow`
-  - 路径: [skills/git-workflow/SKILL.md](skills/git-workflow/SKILL.md) (3317 tokens)
-  - 用途: Git 本地提交与 issue/PR 收尾约定（分支命名、commit、gh 沙箱、PR body 模板）
+  - 路径: [skills/git-workflow/SKILL.md](skills/git-workflow/SKILL.md) (1194 tokens)
+  - 用途: Git 本地提交约定（分支命名、commit、gh 沙箱）；Issue/PR 交付流程与正文规则见 `references/`
 - `test-review`
   - 路径: [skills/test-review/SKILL.md](skills/test-review/SKILL.md) (1235 tokens)
   - 用途: 用户点名、即将开 PR、或大任务完成怕遗漏时审查测试完备性并按需补测
@@ -71,7 +71,9 @@ skills/
 │   ├── spec-review/            # Spec 文档审查 skill
 │   │   └── SKILL.md
 │   ├── git-workflow/           # Git 提交与 PR 收尾 skill
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── references/
+│   │       └── issue-pr.md     # Issue/PR 交付流程与正文规则
 │   ├── test-review/            # 测试完备性审查 skill
 │   │   └── SKILL.md
 │   └── man-day-quote/          # 人天报价 skill
