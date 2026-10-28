@@ -16,73 +16,58 @@
 ### 可用 Skills
 
 - `ts-standards`
-  - 路径: [skills/ts-standards/SKILL.md](skills/ts-standards/SKILL.md) (1141 tokens)
+  - 路径: [skills/ts-standards/SKILL.md](skills/ts-standards/SKILL.md)
   - 用途: TypeScript 项目编码规范（前端、Node.js 后端、脚本、工具链），前端细节见 `references/`
 - `business-roadmap`
-  - 路径: [skills/business-roadmap/SKILL.md](skills/business-roadmap/SKILL.md) (636 tokens)
+  - 路径: [skills/business-roadmap/SKILL.md](skills/business-roadmap/SKILL.md)
   - 用途: 用户主动调用时进行业务宏观规划，梳理发展方向、演进阶段、关键依赖与成功判据
 - `code-review`
-  - 路径: [skills/code-review/SKILL.md](skills/code-review/SKILL.md) (1143 tokens)
+  - 路径: [skills/code-review/SKILL.md](skills/code-review/SKILL.md)
   - 用途: 对代码变更、diff、commit 或实现做只读审查，按正确性、安全、性能、可维护性、风格排序输出 findings
 - `pr-review`
-  - 路径: [skills/pr-review/SKILL.md](skills/pr-review/SKILL.md) (993 tokens)
+  - 路径: [skills/pr-review/SKILL.md](skills/pr-review/SKILL.md)
   - 用途: 基于 code-review 审查 PR，结尾询问是否将结论回复到 PR
 - `handle-review`
-  - 路径: [skills/handle-review/SKILL.md](skills/handle-review/SKILL.md) (678 tokens)
+  - 路径: [skills/handle-review/SKILL.md](skills/handle-review/SKILL.md)
   - 用途: 验证 PR review 或用户提供的 review 结论，并派一个 subagent 处理确认成立的修复
 - `spec-review`
-  - 路径: [skills/spec-review/SKILL.md](skills/spec-review/SKILL.md) (764 tokens)
+  - 路径: [skills/spec-review/SKILL.md](skills/spec-review/SKILL.md)
   - 用途: 审查 spec、设计文档或技术方案文档，给出修改建议、设计改进意见和补充建议
 - `git-workflow`
-  - 路径: [skills/git-workflow/SKILL.md](skills/git-workflow/SKILL.md) (1194 tokens)
+  - 路径: [skills/git-workflow/SKILL.md](skills/git-workflow/SKILL.md)
   - 用途: Git 本地提交约定（分支命名、commit、gh 沙箱）；Issue/PR 交付流程与正文规则见 `references/`
 - `test-review`
-  - 路径: [skills/test-review/SKILL.md](skills/test-review/SKILL.md) (1235 tokens)
+  - 路径: [skills/test-review/SKILL.md](skills/test-review/SKILL.md)
   - 用途: 用户点名、即将开 PR、或大任务完成怕遗漏时审查测试完备性并按需补测
 - `man-day-quote`
-  - 路径: [skills/man-day-quote/SKILL.md](skills/man-day-quote/SKILL.md) (2162 tokens)
+  - 路径: [skills/man-day-quote/SKILL.md](skills/man-day-quote/SKILL.md)
   - 用途: 人天报价（调用后先问方式与落地路径；线 A 直接估 / 线 B 先设计再估；确认后 py 生成 xlsx）
 
-## 目录结构
+## 文件 Token 统计
 
-```text
-skills/
-├── _template/                  # Skill 模板
-│   ├── SKILL.template.md       # 【必需】核心文件模板（复制后重命名为 SKILL.md）
-│   ├── README.md               # 给人类看的说明模板
-│   └── examples.md             # Few-shot 示例模板
-├── rules/                      # 通用规则与可选补充规则
-│   ├── main.md                 # 默认通用规则
-│   └── codegraph.md            # CodeGraph 可选规则
-├── skills/                     # Skills 目录
-│   ├── ts-standards/           # TypeScript 项目编码规范 skill
-│   │   ├── SKILL.md
-│   │   └── references/         # 按触发条件拆分：react / performance / interaction
-│   ├── business-roadmap/       # 业务宏观规划 skill
-│   │   ├── SKILL.md
-│   │   └── agents/
-│   │       └── openai.yaml
-│   ├── code-review/            # 代码审查 skill
-│   │   └── SKILL.md
-│   ├── pr-review/              # PR 审查 skill
-│   │   └── SKILL.md
-│   ├── handle-review/          # Review 结论处理 skill
-│   │   └── SKILL.md
-│   ├── spec-review/            # Spec 文档审查 skill
-│   │   └── SKILL.md
-│   ├── git-workflow/           # Git 提交与 PR 收尾 skill
-│   │   ├── SKILL.md
-│   │   └── references/
-│   │       └── issue-pr.md     # Issue/PR 交付流程与正文规则
-│   ├── test-review/            # 测试完备性审查 skill
-│   │   └── SKILL.md
-│   └── man-day-quote/          # 人天报价 skill
-│       ├── SKILL.md
-│       └── scripts/
-│           └── generate-quote-xlsx.py
-├── CLAUDE.md                   # 本仓库编写规范
-└── README.md                   # 本文件
-```
+<!-- token-stats:start -->
+
+> 由 `scripts/count-tokens.mjs` 自动生成。
+
+| 文件 | Tokens |
+| --- | ---: |
+| [rules/codegraph.md](rules/codegraph.md) | 438 |
+| [rules/main.md](rules/main.md) | 6858 |
+| [skills/business-roadmap/SKILL.md](skills/business-roadmap/SKILL.md) | 636 |
+| [skills/code-review/SKILL.md](skills/code-review/SKILL.md) | 1143 |
+| [skills/git-workflow/SKILL.md](skills/git-workflow/SKILL.md) | 1194 |
+| [skills/git-workflow/references/issue-pr.md](skills/git-workflow/references/issue-pr.md) | 2230 |
+| [skills/handle-review/SKILL.md](skills/handle-review/SKILL.md) | 678 |
+| [skills/man-day-quote/SKILL.md](skills/man-day-quote/SKILL.md) | 2162 |
+| [skills/pr-review/SKILL.md](skills/pr-review/SKILL.md) | 993 |
+| [skills/spec-review/SKILL.md](skills/spec-review/SKILL.md) | 764 |
+| [skills/test-review/SKILL.md](skills/test-review/SKILL.md) | 1235 |
+| [skills/ts-standards/SKILL.md](skills/ts-standards/SKILL.md) | 1141 |
+| [skills/ts-standards/references/interaction.md](skills/ts-standards/references/interaction.md) | 263 |
+| [skills/ts-standards/references/performance.md](skills/ts-standards/references/performance.md) | 515 |
+| [skills/ts-standards/references/react.md](skills/ts-standards/references/react.md) | 1827 |
+
+<!-- token-stats:end -->
 
 ## 如何新建 Skill
 
