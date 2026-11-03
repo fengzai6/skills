@@ -7,7 +7,7 @@
 ### 可用 Rules
 
 - `main`
-  - 路径: [rules/main.md](rules/main.md) (5187 tokens)
+  - 路径: [rules/main.md](rules/main.md) (5087 tokens)
   - 用途: 默认通用规则，全局行为约束与通用编码规范，所有项目通用，应放置在 `~/.claude/CLAUDE.md` 中始终生效，正常使用时复制这个文件内容即可
 
 ### 可用 Skills
@@ -48,7 +48,7 @@
 
 | 文件 | Tokens |
 | --- | ---: |
-| [rules/main.md](rules/main.md) | 5187 |
+| [rules/main.md](rules/main.md) | 5087 |
 | [skills/business-roadmap/SKILL.md](skills/business-roadmap/SKILL.md) | 636 |
 | [skills/code-review/SKILL.md](skills/code-review/SKILL.md) | 1143 |
 | [skills/git-workflow/SKILL.md](skills/git-workflow/SKILL.md) | 1194 |
@@ -58,7 +58,7 @@
 | [skills/pr-review/SKILL.md](skills/pr-review/SKILL.md) | 993 |
 | [skills/spec-review/SKILL.md](skills/spec-review/SKILL.md) | 764 |
 | [skills/test-review/SKILL.md](skills/test-review/SKILL.md) | 1235 |
-| [skills/ts-standards/SKILL.md](skills/ts-standards/SKILL.md) | 1141 |
+| [skills/ts-standards/SKILL.md](skills/ts-standards/SKILL.md) | 1233 |
 | [skills/ts-standards/references/interaction.md](skills/ts-standards/references/interaction.md) | 263 |
 | [skills/ts-standards/references/performance.md](skills/ts-standards/references/performance.md) | 515 |
 | [skills/ts-standards/references/react.md](skills/ts-standards/references/react.md) | 1827 |
