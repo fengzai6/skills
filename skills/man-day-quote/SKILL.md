@@ -4,7 +4,7 @@ description: Use when estimating man-days, producing quote spreadsheets, 人天�
 user-invocable: true
 metadata:
   author: nacho
-  version: 0.1.0
+  version: 0.1.1
 ---
 
 # 人天报价
@@ -22,7 +22,7 @@ metadata:
 - **附近参考（可选）**：在落地路径同目录及常见子目录扫已有报价 xlsx；**有则参考口径，没有就跳过**，只用本 skill 锚点与拆行规则
 - **模板（可选）**：用户若额外提供模板 xlsx → `-t` 优先用；未提供 → 脚本内建表头+公式+类型下拉
 - 不写单价/税费/商务条款（本表只有人天）
-- Total 用 `SUM(E:E)` 公式，不手写死总数充数
+- Total 用 `SUM(E:E)` 公式，不手写死总数充数；生成时同时写入合计缓存值，未打开保存也应直接显示总数
 
 ## 类型枚举（写入 C 列，繁体；与模板下拉一致）
 
@@ -99,6 +99,9 @@ xlsx 的 C 列带下拉（脚本写入）。禁止长期空类型。识别历史
 ```bash
 python3 -m pip install openpyxl
 ```
+
+脚本为 G2 保留公式并写入实际合计的缓存值；生成后无需先用 Excel 打开并保存。
+修改脚本后，从本 skill 目录执行 `python3 -m unittest discover -s tests -v` 验证。
 
 ```bash
 # 用户模板优先

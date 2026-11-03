@@ -21,8 +21,14 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
+import posixpath
+import re
 import sys
+import tempfile
+import zipfile
 from pathlib import Path
+from xml.etree import ElementTree
 
 try:
     from openpyxl import Workbook, load_workbook
@@ -189,6 +195,62 @@ def normalize_rows(rows: list[dict]) -> list[dict]:
     return normalized
 
 
+def find_sheet_xml_path(archive: zipfile.ZipFile, sheet_index: int) -> str:
+    """Resolve a worksheet XML path from workbook relationships."""
+    workbook = ElementTree.fromstring(archive.read("xl/workbook.xml"))
+    sheet = list(workbook.findall(".//{*}sheet"))[sheet_index]
+    rel_id = sheet.attrib["{http://schemas.openxmlformats.org/officeDocument/2006/relationships}id"]
+
+    rels = ElementTree.fromstring(archive.read("xl/_rels/workbook.xml.rels"))
+    for rel in rels.findall(".//{*}Relationship"):
+        if rel.attrib.get("Id") != rel_id:
+            continue
+        target = rel.attrib["Target"].lstrip("/")
+        if not target.startswith("xl/"):
+            target = posixpath.normpath(posixpath.join("xl", target))
+        return target
+    raise SystemExit(f"worksheet relationship not found: {rel_id}")
+
+
+def cache_total(path: Path, sheet_index: int, total: float) -> None:
+    """Keep G2 as a formula while also writing its calculated value into the xlsx cache."""
+    mode = path.stat().st_mode
+    fd, temp_name = tempfile.mkstemp(suffix=".xlsx", dir=path.parent)
+    os.close(fd)
+    temp = Path(temp_name)
+    try:
+        with zipfile.ZipFile(path) as src, zipfile.ZipFile(temp, "w") as dst:
+            sheet_path = find_sheet_xml_path(src, sheet_index)
+            for info in src.infolist():
+                data = src.read(info)
+                if info.filename == sheet_path:
+                    xml = data.decode("utf-8")
+                    match = re.search(r'(<c\b[^>]*\br="G2"[^>]*>)(.*?)(</c>)', xml, re.DOTALL)
+                    if match is None:
+                        raise SystemExit("G2 cell not found in generated worksheet")
+                    inner = match.group(2)
+                    if "<f" not in inner:
+                        raise SystemExit("G2 formula not found in generated worksheet")
+                    cached = f"<v>{total:g}</v>"
+                    if re.search(r"<v\b[^>]*>.*?</v>|<v\b[^>]*/>", inner, re.DOTALL):
+                        inner = re.sub(
+                            r"<v\b[^>]*>.*?</v>|<v\b[^>]*/>",
+                            cached,
+                            inner,
+                            count=1,
+                            flags=re.DOTALL,
+                        )
+                    else:
+                        inner += cached
+                    xml = xml[: match.start(2)] + inner + xml[match.end(2) :]
+                    data = xml.encode("utf-8")
+                dst.writestr(info, data)
+        os.chmod(temp, mode)
+        os.replace(temp, path)
+    finally:
+        temp.unlink(missing_ok=True)
+
+
 def write_rows(ws, rows: list[dict]) -> None:
     clear_data_rows(ws)
     # ensure header
@@ -271,8 +333,12 @@ def main() -> None:
 
     rows = normalize_rows(rows)
     write_rows(ws, rows)
-    wb.save(out)
     total = sum(r["days"] for r in rows)
+    wb.calculation.calcMode = "auto"
+    wb.calculation.fullCalcOnLoad = True
+    wb.calculation.forceFullCalc = True
+    wb.save(out)
+    cache_total(out, wb.index(ws), total)
     print(str(out))
     print(f"rows={len(rows)} total_days={total:g}", file=sys.stderr)
 
