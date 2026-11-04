@@ -27,9 +27,6 @@
 - `handle-review`
   - 路径: [skills/handle-review/SKILL.md](skills/handle-review/SKILL.md)
   - 用途: 验证 PR review 或用户提供的 review 结论，并派一个 subagent 处理确认成立的修复
-- `spec-review`
-  - 路径: [skills/spec-review/SKILL.md](skills/spec-review/SKILL.md)
-  - 用途: 审查 spec、设计文档或技术方案文档，给出修改建议、设计改进意见和补充建议
 - `git-workflow`
   - 路径: [skills/git-workflow/SKILL.md](skills/git-workflow/SKILL.md)
   - 用途: Git 本地提交约定（分支命名、commit、gh 沙箱）；Issue/PR 交付流程与正文规则见 `references/`
@@ -56,7 +53,6 @@
 | [skills/handle-review/SKILL.md](skills/handle-review/SKILL.md) | 678 |
 | [skills/man-day-quote/SKILL.md](skills/man-day-quote/SKILL.md) | 2776 |
 | [skills/pr-review/SKILL.md](skills/pr-review/SKILL.md) | 993 |
-| [skills/spec-review/SKILL.md](skills/spec-review/SKILL.md) | 764 |
 | [skills/test-review/SKILL.md](skills/test-review/SKILL.md) | 1235 |
 | [skills/ts-standards/SKILL.md](skills/ts-standards/SKILL.md) | 1233 |
 | [skills/ts-standards/references/interaction.md](skills/ts-standards/references/interaction.md) | 263 |
