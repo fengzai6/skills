@@ -48,11 +48,9 @@ metadata:
 - 修复或未修原因
 - 修复 commit 和复核结果
 
-收尾时询问用户是否需要 push、回复 PR comment、resolve thread 等远程操作；未获明确要求不执行。
+收尾时询问用户是否需要 push、回复 PR comment、resolve thread 或合并 PR 等远程操作。
 
 ## 红线
 
-- 未验证结论就派发修复。
-- 给每条 comment 单独派 subagent。
 - 把不成立或需确认的结论硬改。
-- 自动 push、回复 PR、resolve thread 或合并 PR。
+- 未获明确授权就 push、回复 PR、resolve thread 或合并 PR。

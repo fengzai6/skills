@@ -48,9 +48,4 @@ metadata:
 
 ## 红线
 
-- 未到阶段 2 就 push / 建 issue / 建 PR
-- 把本地配置（或混有本地配置的文件）stage / commit；用 `git add -A` 或 `git add .`
-- 主分支上未询问就直接 commit（应先问；用户拒绝建分支后可 commit）
-- 在沙箱内跑 `gh` / `glab`
-- 无必要就创建 worktree（默认当前工作区；worktree 常缺依赖）
-- 把「开发完成」自行升级成收尾
+- 不把「开发完成」当作提交或远程收尾授权，也不从 commit 授权推导 push、建 issue 或 PR 授权。

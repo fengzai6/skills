@@ -102,14 +102,3 @@ gh pr create --title "English title" --body-file ./pr-body.md --assignee "$(gh a
 ```
 
 示例中的 `./pr-body.md` 是按本文件模板准备的 PR 正文文件；`gh` / `glab` / `git push` 按仓库约定在沙箱外执行。
-
-## 红线
-
-- PR 创建后未经用户同意就自动派子智能体 review
-- PR 无 Test plan 节或 Test plan 空白
-- 未扫本 PR 测试文件就写 Test plan
-- 把测试已覆盖的场景写成手测步骤
-- 风险或影响章节未匹配实际情况：有风险却未在 `Risk` 或 `Risk & Impact` 中说明，有影响却未在 `Impact` 或 `Risk & Impact` 中说明；两者都有却未用 `Risk & Impact`，或仅有一者却用了该标题；含风险的章节为空或写「无明显风险」
-- 无 breaking 却保留 `Breaking changes` 节
-- 存在已确认的重要设计取舍却缺少 `Design decisions`，或无此类取舍却保留该节
-- PR 描述包含无法由实际差异、已确认需求或设计依据支持的事实，或把未合入状态写成本 PR 交付或基线行为
