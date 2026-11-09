@@ -16,6 +16,8 @@ Status: implemented
 
 既有笔记中，[第一轮保守去重](2026-11-03-main-rules-deduplication.md) 与本主题部分重叠，本次补充已核实承接关系的规则迁移，不取代其去重决定；两篇互链。[按技术栈命名](2026-11-03-stack-aware-naming.md) 和 [TypeScript 规范分册](../architecture/2026-10-22-ts-standards-reference-split.md) 继续适用。[查证确认与文件拆分边界](2026-11-03-main-rules-execution-boundaries.md) 不受本次归属调整影响。检索未发现本主题的其他活跃提案。
 
+通用开发约束的后续加载位置由[全局对话规则与开发规范按任务分离](2026-11-09-dev-standards.md)调整：复用和笔记校验要求由 `dev-standards` 承接，事实查证与 Git 授权仍在 `main`；本篇记录的专项承接关系继续适用。
+
 ## Alternatives considered
 
 - **全部保留在通用入口（未采用）**：无需依赖专项 skill 承接，但会持续把语言和目录假设施加到其他项目，并造成同一执行细节多处维护。

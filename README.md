@@ -7,11 +7,14 @@
 ### 可用 Rules
 
 - `main`
-  - 路径: [rules/main.md](rules/main.md) (5087 tokens)
-  - 用途: 默认通用规则，全局行为约束与通用编码规范，所有项目通用，应放置在 `~/.claude/CLAUDE.md` 中始终生效，正常使用时复制这个文件内容即可
+  - 路径: [rules/main.md](rules/main.md) (1945 tokens)
+  - 用途: 所有对话通用的行为约束与 skill 入口，应放置在 `~/.claude/CLAUDE.md` 中始终生效；软件开发规范通过 `dev-standards` 按任务加载，正常使用时复制这个文件内容即可
 
 ### 可用 Skills
 
+- `dev-standards`
+  - 路径: [skills/dev-standards/SKILL.md](skills/dev-standards/SKILL.md)
+  - 用途: 按任务加载的通用开发规范，覆盖开发闭环、代码与测试约束及专项 skill 入口；是否处于代码仓库不影响触发
 - `ts-standards`
   - 路径: [skills/ts-standards/SKILL.md](skills/ts-standards/SKILL.md)
   - 用途: TypeScript 项目编码规范（前端、Node.js 后端、脚本、工具链），前端细节见 `references/`
@@ -45,9 +48,10 @@
 
 | 文件 | Tokens |
 | --- | ---: |
-| [rules/main.md](rules/main.md) | 5087 |
+| [rules/main.md](rules/main.md) | 1945 |
 | [skills/business-roadmap/SKILL.md](skills/business-roadmap/SKILL.md) | 536 |
 | [skills/code-review/SKILL.md](skills/code-review/SKILL.md) | 1143 |
+| [skills/dev-standards/SKILL.md](skills/dev-standards/SKILL.md) | 3525 |
 | [skills/git-workflow/SKILL.md](skills/git-workflow/SKILL.md) | 1085 |
 | [skills/git-workflow/references/issue-pr.md](skills/git-workflow/references/issue-pr.md) | 1929 |
 | [skills/handle-review/SKILL.md](skills/handle-review/SKILL.md) | 650 |
