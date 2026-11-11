@@ -53,7 +53,7 @@
 | [skills/code-review/SKILL.md](skills/code-review/SKILL.md) | 1143 |
 | [skills/dev-standards/SKILL.md](skills/dev-standards/SKILL.md) | 3525 |
 | [skills/git-workflow/SKILL.md](skills/git-workflow/SKILL.md) | 1085 |
-| [skills/git-workflow/references/issue-pr.md](skills/git-workflow/references/issue-pr.md) | 1929 |
+| [skills/git-workflow/references/issue-pr.md](skills/git-workflow/references/issue-pr.md) | 2264 |
 | [skills/handle-review/SKILL.md](skills/handle-review/SKILL.md) | 650 |
 | [skills/man-day-quote/SKILL.md](skills/man-day-quote/SKILL.md) | 2645 |
 | [skills/pr-review/SKILL.md](skills/pr-review/SKILL.md) | 892 |
