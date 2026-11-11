@@ -26,7 +26,7 @@
   - 用途: 对代码变更、diff、commit 或实现做只读审查，按正确性、安全、性能、可维护性、风格排序输出 findings
 - `pr-review`
   - 路径: [skills/pr-review/SKILL.md](skills/pr-review/SKILL.md)
-  - 用途: 基于 code-review 审查 PR，结尾询问是否将结论回复到 PR
+  - 用途: 基于 code-review 审查 PR，按 PR 作者是否为当前 gh 登录账号决定是否询问回复到 PR
 - `handle-review`
   - 路径: [skills/handle-review/SKILL.md](skills/handle-review/SKILL.md)
   - 用途: 验证 PR review 或用户提供的 review 结论，并派一个 subagent 处理确认成立的修复
@@ -53,10 +53,10 @@
 | [skills/code-review/SKILL.md](skills/code-review/SKILL.md) | 1143 |
 | [skills/dev-standards/SKILL.md](skills/dev-standards/SKILL.md) | 3525 |
 | [skills/git-workflow/SKILL.md](skills/git-workflow/SKILL.md) | 1085 |
-| [skills/git-workflow/references/issue-pr.md](skills/git-workflow/references/issue-pr.md) | 2264 |
+| [skills/git-workflow/references/issue-pr.md](skills/git-workflow/references/issue-pr.md) | 2281 |
 | [skills/handle-review/SKILL.md](skills/handle-review/SKILL.md) | 650 |
 | [skills/man-day-quote/SKILL.md](skills/man-day-quote/SKILL.md) | 2645 |
-| [skills/pr-review/SKILL.md](skills/pr-review/SKILL.md) | 892 |
+| [skills/pr-review/SKILL.md](skills/pr-review/SKILL.md) | 1164 |
 | [skills/test-review/SKILL.md](skills/test-review/SKILL.md) | 1140 |
 | [skills/ts-standards/SKILL.md](skills/ts-standards/SKILL.md) | 1233 |
 | [skills/ts-standards/references/interaction.md](skills/ts-standards/references/interaction.md) | 263 |

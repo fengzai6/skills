@@ -11,6 +11,21 @@ metadata:
 
 复用 [code-review](../code-review/SKILL.md) 的审查口径，对 PR 做只读审查。
 
+## PR 归属判断
+
+获取 PR 时记录作者，并读取当前 `gh` 登录身份：
+
+```bash
+pr_author=$(gh pr view "$PR" --json author --jq '.author.login')
+current_user=$(gh api user -q .login)
+```
+
+- `pr_author == current_user`：自审。
+- `pr_author != current_user`：审查他人 PR。
+- 任一值获取失败或为空：归属未知。
+
+这里只判断 PR 作者是否为当前 `gh` 登录账号，不判断是否由当前 Agent 创建。不要使用 commit author、assignee、分支名或 `git config` 推断；`gh` 按仓库约定在沙箱外执行。
+
 ## 获取输入
 
 支持：
@@ -34,9 +49,12 @@ metadata:
 ## 输出与回复
 
 1. 先输出完整 review，至少包含所有 findings、超出范围汇总和 verdict。
-2. 输出完成后，询问用户是否需要将结论回复到 PR。
-3. 用户不需要回复时到此结束。
-4. 用户需要回复时，使用 `gh` 按用户指定的形式回复到目标 PR；`gh` 按仓库约定在沙箱外执行。
+2. 按 PR 归属处理：
+   - 自审：不询问是否回复，也不默认写 PR；审查结果作为内部结果。用户明确要求回复时才回复。
+   - 审查他人 PR：询问用户是否需要将结论回复到 PR。
+   - 归属未知：按审查他人 PR 处理，先询问用户。
+3. 用户未要求或不需要回复时到此结束。
+4. 用户明确要求回复，或审查他人 PR 且用户确认回复时，使用 `gh` 按用户指定的形式回复到目标 PR；`gh` 按仓库约定在沙箱外执行。
 5. 回复失败时保留完整 review 文本，并报告失败原因，不改成猜测性摘要。
 
 当现有能力已经满足需求，或当前 PR 的整体方案不应进入代码库时，必须明确建议关闭 PR，而不是只要求修复局部问题。推荐使用以下 verdict 之一：

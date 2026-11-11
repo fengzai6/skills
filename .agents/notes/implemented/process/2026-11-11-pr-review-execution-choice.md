@@ -4,7 +4,7 @@ Status: implemented
 
 ## Problem
 
-PR 创建后，用户可能直接要求 review 而不指定执行方式。当前会话刚刚参与实现，容易受实现思路影响；独立 reviewer 又需要明确上下文边界、用户交互责任和回复 PR 的授权边界。缺少默认策略时，执行方式取决于运行时能力，结果不可预期。
+PR 创建后，用户可能直接要求 review 而不指定执行方式。当前会话刚刚参与实现，容易受实现思路影响；独立 reviewer 又需要明确上下文边界、用户交互责任和回复 PR 的授权边界。审查结束是否应询问回复 PR，还取决于 PR 作者是否为当前登录用户；commit author、assignee 等信号不能可靠表示 PR 归属。
 
 ## Decision
 
@@ -16,6 +16,14 @@ PR 创建后，用户可能直接要求 review 而不指定执行方式。当前
 `skills/pr-review/SKILL.md` 保持通用的 PR 审查流程，不区分执行者。独立 reviewer 的职责边界由派发者在 prompt 中明确；用户澄清和 PR 回复由主会话处理。
 
 独立 reviewer 的审查结果由主会话核对与 PR diff 的一致性后向用户展示；需澄清项和是否回复 PR 都仍由主会话向用户确认。当前环境不支持 subagent 时，显式说明原因并回退到当前会话。
+
+`skills/pr-review/SKILL.md` 在获取 PR 时比较 `author.login` 与 `gh api user` 返回的当前登录账号：
+
+- 两者相同：按自审处理，不询问是否回复 PR，也不默认写 PR；用户明确要求时才回复。
+- 两者不同：按审查他人 PR 处理，输出 review 后询问是否回复。
+- 无法取得任一侧身份：按归属未知处理，先询问用户，不猜测为自审。
+
+该判断只表示 PR 作者是否为当前 `gh` 登录账号，不表示当前 Agent 是否创建了 PR。`gh` 查询按仓库约定在沙箱外执行。
 
 ## Alternatives considered
 
@@ -35,14 +43,24 @@ PR 创建后，用户可能直接要求 review 而不指定执行方式。当前
 
 可以直接约束当前会话与独立 reviewer 的行为，但会让通用 PR 审查 skill 绑定具体编排方式。派发者已在 prompt 中提供审查范围和交互边界，因此不在该 skill 中重复。
 
+### 使用 commit author 或 assignee 判断 PR 归属
+
+实现简单，但这些字段不等于 PR 作者，且当前 Agent 通常复用用户凭证；用它们判断自审会把本机提交信息或分配关系误当成 PR 所有权。
+
+### 判断是否为当前 Agent 创建的 PR
+
+更贴近会话来源，但 GitHub 不记录 Agent 与会话身份；要可靠实现必须在创建 PR 时额外记录 provenance。当前采用账号级归属，不引入会话状态。
+
 ## Consequences
 
 - 用户可以在审查独立性、速度和使用当前上下文之间主动选择。
 - 独立审查需要更明确的 brief 和结果核对，增加一次上下文交接；无 subagent 时会回退到当前会话，不阻塞交付。
 - 是否将 review 结论回复到 PR 仍由用户单独授权，review 本身不等于远程写操作。
+- 自审不再询问是否回复；该判断基于当前 `gh` 登录账号，不覆盖同一账号下多个操作者或 Agent 的差异。
 
 ## Verification
 
 - 检查 `skills/git-workflow/references/issue-pr.md` 的可选 PR review 步骤包含两个带简短说明的选项、直接要求 review 时默认使用推荐方式、无 review 分支、回退规则和用户确认边界。
 - 检查 `skills/pr-review/SKILL.md` 保持通用 PR 审查流程，独立 reviewer 的职责边界只由派发者 prompt 传递。
+- 检查 `skills/pr-review/SKILL.md` 使用 PR `author.login` 与 `gh api user` 判断归属，并覆盖自审、他人 PR 和未知三种回复分支。
 - 使用仓库的 agent note 校验脚本检查新增决策记录的目录、格式和链接。
