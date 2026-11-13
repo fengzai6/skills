@@ -48,7 +48,7 @@ current_user=$(gh api user -q .login)
 
 ## 输出与回复
 
-1. 先输出完整 review，至少包含所有 findings、超出范围汇总和 verdict。
+1. 先输出完整 review，包含所有 findings、有价值的非阻断 Design Suggestions（如有）、超出范围汇总和 verdict。
 2. 按 PR 归属处理：
    - 自审：不询问是否回复，也不默认写 PR；审查结果作为内部结果。用户明确要求回复时才回复。
    - 审查他人 PR：询问用户是否需要将结论回复到 PR。

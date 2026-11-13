@@ -23,7 +23,7 @@
   - 用途: 用户主动调用时进行业务宏观规划，梳理发展方向、演进阶段、关键依赖与成功判据
 - `code-review`
   - 路径: [skills/code-review/SKILL.md](skills/code-review/SKILL.md)
-  - 用途: 对代码变更、diff、commit 或实现做只读审查，按正确性、安全、性能、可维护性、风格排序输出 findings
+  - 用途: 对代码变更、diff、commit 或实现做只读审查，区分需处理的缺陷与非阻断的设计改进建议
 - `pr-review`
   - 路径: [skills/pr-review/SKILL.md](skills/pr-review/SKILL.md)
   - 用途: 基于 code-review 审查 PR，按 PR 作者是否为当前 gh 登录账号决定是否询问回复到 PR
@@ -50,13 +50,13 @@
 | --- | ---: |
 | [rules/main.md](rules/main.md) | 1945 |
 | [skills/business-roadmap/SKILL.md](skills/business-roadmap/SKILL.md) | 536 |
-| [skills/code-review/SKILL.md](skills/code-review/SKILL.md) | 1143 |
+| [skills/code-review/SKILL.md](skills/code-review/SKILL.md) | 1811 |
 | [skills/dev-standards/SKILL.md](skills/dev-standards/SKILL.md) | 3525 |
 | [skills/git-workflow/SKILL.md](skills/git-workflow/SKILL.md) | 1085 |
 | [skills/git-workflow/references/issue-pr.md](skills/git-workflow/references/issue-pr.md) | 2281 |
 | [skills/handle-review/SKILL.md](skills/handle-review/SKILL.md) | 650 |
 | [skills/man-day-quote/SKILL.md](skills/man-day-quote/SKILL.md) | 2645 |
-| [skills/pr-review/SKILL.md](skills/pr-review/SKILL.md) | 1164 |
+| [skills/pr-review/SKILL.md](skills/pr-review/SKILL.md) | 1176 |
 | [skills/test-review/SKILL.md](skills/test-review/SKILL.md) | 1140 |
 | [skills/ts-standards/SKILL.md](skills/ts-standards/SKILL.md) | 1233 |
 | [skills/ts-standards/references/interaction.md](skills/ts-standards/references/interaction.md) | 263 |
