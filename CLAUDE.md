@@ -145,10 +145,6 @@ description 是代理决定是否读取某个 skill 时看到的关键信息。�
 
 - `name`: skill 名称（kebab-case）
 - `description`: 简短描述（显示在 skill 列表中）
-- `argument-hint`: 参数提示（可选）
 - `user-invocable`: 是否可由用户直接调用（true/false）
-- `compatibility`: 兼容性信息
-- `context`: 上下文配置
 - `disable-model-invocation`: 是否禁止模型自动调用（true/false）
-- `license`: 许可证
 - `metadata`: 额外元数据
