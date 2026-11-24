@@ -7,7 +7,7 @@
 ### 可用 Rules
 
 - `main`
-  - 路径: [rules/main.md](rules/main.md) (1945 tokens)
+  - 路径: [rules/main.md](rules/main.md) (2342 tokens)
   - 用途: 所有对话通用的行为约束与 skill 入口，应放置在 `~/.claude/CLAUDE.md` 中始终生效；软件开发规范通过 `dev-standards` 按任务加载，正常使用时复制这个文件内容即可
 
 ### 可用 Skills
@@ -48,7 +48,7 @@
 
 | 文件 | Tokens |
 | --- | ---: |
-| [rules/main.md](rules/main.md) | 1945 |
+| [rules/main.md](rules/main.md) | 2342 |
 | [skills/business-roadmap/SKILL.md](skills/business-roadmap/SKILL.md) | 536 |
 | [skills/code-review/SKILL.md](skills/code-review/SKILL.md) | 1811 |
 | [skills/dev-standards/SKILL.md](skills/dev-standards/SKILL.md) | 3790 |
